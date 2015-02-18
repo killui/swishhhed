@@ -1,0 +1,25 @@
+<ion-view ng-controller="profilController">
+ 
+    <ion-header-bar align-title="center" >
+        <div class="buttons">
+            <a ng-href="#/" class="button">shots</a>
+        </div>
+        <h1 class="title">Profil</h1>
+        <!-- <div class="buttons">
+        <button class="button">Right Button</button>
+        </div> -->
+    </ion-header-bar>
+
+    <ion-content class="content_center">
+
+      <h2>{{ name }}</h2>
+      <br>
+      <img src="{{ avatar }}" alt="{{ name }}">
+      <br>
+      <a href="/followers">{{ followers }} followers</a>
+      <a href="/followings">{{ followings }} followings</a>
+      <a href="/likes">{{ likes }} likes</a>
+
+    </ion-content>
+
+</ion-view>

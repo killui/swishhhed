@@ -1,0 +1,40 @@
+<ion-view ng-controller="shotController">
+
+    <ion-header-bar align-title="center" >
+        <div class="buttons">
+            <a ng-href="#/" class="button">shots</a>
+        </div>
+        <h1 class="title">{{ title }}</h1>
+        <div class="buttons">
+          <a ng-href="#/profil" class="button">profil</a>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="content_center">
+
+        <div id="shot">
+            <img src="{{ shotImages }}" alt="{{ title }}">
+            <div id="shot_counts">
+                <span>{{ views }}<br>views</span>
+                <span>{{ likes }}<br>likes</span>
+                <span>{{ comments }}<br>comments</span>
+            </div>
+        </div>
+
+        <div id="shot_comment">
+            <div id="comment" ng-repeat="comment in comment">
+                <div id="comment_user">
+                    <img src="{{ comment.user.avatar_url }}" alt="{{ comment.username }}">
+                    <span>{{ comment.user.name }}</span>
+                </div>
+                <p id="comment_description">{{ comment.body }}</p>
+                <span id="comment_likes">{{ comment.likes_count }}</span>
+            </div>
+        </div>
+       
+        <!-- <span>{{ shot.title }}</span> -->
+        
+      
+    </ion-content>
+
+</ion-view>

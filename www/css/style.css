@@ -1,1 +1,116 @@
 /* Empty. Add your own CSS if you like */
+
+.pane {
+    background: #f5f5f5;
+}
+.content_center {
+    text-align: center;
+}
+
+/* shots */
+.shots {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #fff;
+    box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
+    padding: 12px;
+    margin: 12px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+.shots img {
+    display: block;
+    width: 200px;
+    height: 150px;
+}
+.shots h2 {
+    width: 200px;
+    display: block;
+    margin: 12px 0 0;
+    color: #adadad;
+    font-size: 14px;
+    line-height: 1.2;
+}
+.shots span {
+    display: inline-block;
+    vertical-align: top;
+    color: #adadad;
+    font-size: 10px;
+}
+
+/* Shot */
+#shot {
+    width: 100%;
+    border-bottom: solid 2px #333333;
+    background: #333333;
+}
+#shot img {
+    width: 400px;
+    height: 300px;
+    max-width: 100%;
+    display: block;
+}
+
+#shot #shot_counts {
+    display: block;
+    width: 100%;
+    border-top: solid 2px #333333;
+    background: #333333;
+}
+
+#shot #shot_counts span {
+    display: inline-block;
+    width: 33%;
+    text-align: center;
+    vertical-align: top;
+    color: #9ba5a8;
+}
+
+#shot_comment {
+    display: block;
+    width: 100%;
+}
+
+#shot_comment #comment {
+    padding: 10px 0;
+    width: 100%;
+    display: block;
+    border-bottom:solid 1px #9ba5a8;
+}
+
+#shot_comment #comment #comment_user {
+    width: 100%;
+    display: block;
+    vertical-align: middle;
+    color: #00b6e3;
+    text-align: left;
+    padding: 4px;
+}
+
+#shot_comment #comment #comment_user img {
+    box-sizing:border-box;
+    width: 40px;
+    border-radius: 40px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#shot_comment #comment #comment_description {
+    box-sizing:border-box;
+    width: 100%;
+    display: block;
+    text-align: left;
+    vertical-align: middle;
+    color: #333333;
+    padding: 4px;
+}
+
+#shot_comment #comment #comment_likes {
+    box-sizing:border-box;
+    width: 100%;
+    display: block;
+    text-align: right;
+    vertical-align: middle;
+    color: #ea4c89;
+    padding: 4px;
+}
