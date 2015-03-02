@@ -1,5 +1,90 @@
 /* Empty. Add your own CSS if you like */
 
+/* Reset icon */
+.ion-ios7-arrow-down {
+    background-size: 16px 16px;
+}
+.ion-ios7-arrow-down:before {
+    position: relative;
+    background: url('../img/icon_refresh@2x.png')center no-repeat;
+    background-size: 16px 16px;
+    content: " ";
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin: 0 auto;
+}
+.ion-loading-d:before {
+    position: relative;
+    background: url('../img/loader@2x.png')center no-repeat;
+    background-size: 30px 30px;
+    content: " ";
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Icon */
+.btn_icon {
+    display: block;
+    background: none !important;
+    border:none !important;
+    opacity: .6;
+}
+.btn_icon:after {
+    content: none;
+    display: none;
+}
+
+.btn_icon:focus,
+.btn_icon:active,
+.btn_icon:hover {
+    box-shadow: none;
+    outline: none;
+    opacity: 1;
+}
+
+.icons {
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 16px;
+    top: 9px;
+}
+.icon_user {
+    background:url('../img/icon_user@2x.png')center no-repeat;
+    background-size: 16px 16px;
+}
+.icon_views {
+    background:url('../img/icon_views@2x.png')center no-repeat;
+    background-size: 16px 16px;
+}
+.icon_likes {
+    background:url('../img/icon_likes@2x.png')center no-repeat;
+    background-size: 16px 16px;
+}
+.icon_comments {
+    background:url('../img/icon_comments@2x.png')center no-repeat;
+    background-size: 16px 16px;
+}
+.icon_back {
+    background:url('../img/icon_back@2x.png')center no-repeat;
+    background-size: 16px 16px;
+}
+.icon_followers {
+    background:url('../img/icon_followers@2x.png')center no-repeat;
+    background-size: 16px 16px;
+}
+.icon_followings {
+    background:url('../img/icon_followings@2x.png')center no-repeat;
+    background-size: 16px 16px;
+}
+/**/
+h1 {
+    color: #ea4c89;
+}
+
 .pane {
     background: #f5f5f5;
 }
@@ -12,23 +97,22 @@
     display: inline-block;
     vertical-align: top;
     background-color: #fff;
-    box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
-    padding: 12px;
-    margin: 12px;
-    border-radius: 2px;
+    padding: 2%;
+    margin: 3% 3%;
     text-decoration: none;
+    width: 42%;
+    border-radius: 4px;
 }
 .shots img {
     display: block;
-    width: 200px;
-    height: 150px;
+    width: 100%;
 }
 .shots h2 {
-    width: 200px;
+    width: 100%;
     display: block;
-    margin: 12px 0 0;
-    color: #adadad;
-    font-size: 14px;
+    margin: 20px 0 0;
+    color: #9ba5a8;
+    font-size: 16px;
     line-height: 1.2;
 }
 .shots span {
@@ -38,79 +122,144 @@
     font-size: 10px;
 }
 
+.btn_more {
+    display: none;
+    margin:0 auto;
+    width: 84%;
+    color: #00b6e3;
+    border:solid 2px #00b6e3;
+}
+.btn_more:hover,
+.btn_more:active,
+.btn_more:focus {
+    display: block;
+    margin:0 auto;
+    width: 84%;
+    color: #007F9E;
+    border:solid 2px #007F9E;
+    background: none;
+    outline: none;
+    box-shadow: none;
+}
+
+
 /* Shot */
-#shot {
+#shot,
+#profil {
     width: 100%;
-    border-bottom: solid 2px #333333;
-    background: #333333;
+    background: #fff;
 }
-#shot img {
-    width: 400px;
-    height: 300px;
-    max-width: 100%;
+#shot img,
+#profil img {
+    width: 80%;
     display: block;
+    margin:0 10% 10%;
 }
 
-#shot #shot_counts {
-    display: block;
-    width: 100%;
-    border-top: solid 2px #333333;
-    background: #333333;
+#shot #shot_user {
+    text-align: left;
 }
 
-#shot #shot_counts span {
+#shot #shot_user img {
+    box-sizing:border-box;
+    width: 60px;
+    border-radius: 100%;
     display: inline-block;
-    width: 33%;
+    vertical-align: middle;
+    margin:5% 0 5% 10%;
+    background: #f5f5f5;
+}
+#shot #shot_user span {
+    margin: 0 0 0 2%;
+    display: inline-block;
+    color: #00b6e3;
+}
+
+#shot #shot_counts,
+#profil #profil_counts {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background: #f5f5f5;
+}
+
+#shot #shot_counts .count,
+#profil #profil_counts .count {
+    display: inline-block;
+    width: 30%;
     text-align: center;
     vertical-align: top;
     color: #9ba5a8;
+    font-size: 14px;
 }
-
+#shot #shot_counts .count span,
+#profil #profil_counts .count span {
+    display: inline-block;
+    vertical-align: top;
+}
+#shot #shot_counts .count span strong {
+    color: #ea4c89;
+}
+#profil #profil_counts .count span strong {
+    color: #ff8833;
+}
+#shot #shot_counts .count span img,
+#profil #profil_counts .count span img {
+    vertical-align: super;
+    display: inline-block;
+    margin-right: 6px;
+    width: 16px;
+}
 #shot_comment {
+    background: #fff;
     display: block;
     width: 100%;
+    padding: 0 2%;
 }
-
 #shot_comment #comment {
-    padding: 10px 0;
+    background: #fff;
+    padding: 2%;
     width: 100%;
     display: block;
-    border-bottom:solid 1px #9ba5a8;
+    border-bottom:solid 1px #f5f5f5;
 }
-
 #shot_comment #comment #comment_user {
     width: 100%;
     display: block;
     vertical-align: middle;
     color: #00b6e3;
     text-align: left;
-    padding: 4px;
 }
-
 #shot_comment #comment #comment_user img {
     box-sizing:border-box;
     width: 40px;
-    border-radius: 40px;
+    border-radius: 60px;
     display: inline-block;
     vertical-align: middle;
+}
+#shot_comment #comment #comment_user span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    margin: 0 0 0 2%;
 }
 
 #shot_comment #comment #comment_description {
     box-sizing:border-box;
-    width: 100%;
-    display: block;
+    width: 88%;
+    display: inline-block;
     text-align: left;
     vertical-align: middle;
     color: #333333;
-    padding: 4px;
+    padding: 2% 0 0;
 }
-
 #shot_comment #comment #comment_likes {
     box-sizing:border-box;
-    width: 100%;
-    display: block;
+    width: 12%;
+    display: inline-block;
     text-align: right;
-    vertical-align: middle;
-    color: #ea4c89;
-    padding: 4px;
+    vertical-align: top;
+    color: #9ba5a8;
+    padding: 2% 0 0;
 }

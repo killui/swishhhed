@@ -2,23 +2,39 @@
  
     <ion-header-bar align-title="center" >
         <div class="buttons">
-            <a ng-href="#/" class="button">shots</a>
+            <a ng-click="back()" class="button btn_icon"><i class="icons icon_back"></i> Back</a>
         </div>
-        <h1 class="title">Profil</h1>
-        <!-- <div class="buttons">
-        <button class="button">Right Button</button>
-        </div> -->
+        <h1 class="title">{{ name }}</h1>
     </ion-header-bar>
 
     <ion-content class="content_center">
 
-      <h2>{{ name }}</h2>
-      <br>
-      <img src="{{ avatar }}" alt="{{ name }}">
-      <br>
-      <a href="/followers">{{ followers }} followers</a>
-      <a href="/followings">{{ followings }} followings</a>
-      <a href="/likes">{{ likes }} likes</a>
+        <div id="profil">
+            <img src="{{ avatar }}" alt="{{ name }}">
+            <div id="profil_counts">
+                <div class="count">
+                    <span>
+                        <strong>{{ followers }}</strong>
+                        <br>
+                        <i class="icons icon_followers"></i> followers
+                    </span>
+                </div>
+                <div class="count">
+                    <span>
+                        <strong>{{ followings }}</strong>
+                        <br>
+                        <i class="icons icon_followings"></i> followings
+                    </span>
+                </div>
+                <div class="count">
+                    <span>
+                        <strong>{{ likes }}</strong>
+                        <br>
+                        <i class="icons icon_likes"></i> likes
+                    </span>
+                </div>
+            </div>
+        </div>
 
     </ion-content>
 

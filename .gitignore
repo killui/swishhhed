@@ -4,3 +4,6 @@
 node_modules/
 platforms/
 plugins/
+*.psd
+*.ai
+.DS_Store

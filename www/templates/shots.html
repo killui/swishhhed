@@ -1,25 +1,23 @@
 <ion-view ng-controller="shotsController">
-
+    
     <ion-header-bar align-title="center" >
-        <div class="buttons">
-          <a ng-href="#/profil" class="button">login</a>
-        </div>
         <h1 class="title">Shots</h1>
         <div class="buttons">
-          <a ng-href="#/profil" class="button">profil</a>
+            <a ng-href="#/profil" class="button btn_icon"><i class="icons icon_user"></i> Profil</a>
         </div>
     </ion-header-bar>
 
     <ion-content class="content_center">
-
+        <ion-refresher pulling-text="" on-refresh="doRefresh()">
+        </ion-refresher>
+        
         <a ng-href="#/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots">
             <img src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
-            <h2>{{ shot.title }}</h2> 
-            <span>{{ shot.views_count }} views</span> 
-            <span>{{ shot.likes_count }} likes</span> 
-            <span>{{ shot.comments_count }} comments</span> 
+            <!-- <h2>{{ shot.title }}</h2> -->
         </a>
-      
+
+        <ion-infinite-scroll on-infinite="loadMore()" distance="1%">
+        </ion-infinite-scroll>
     </ion-content>
 
 </ion-view>

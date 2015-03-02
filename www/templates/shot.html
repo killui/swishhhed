@@ -2,22 +2,45 @@
 
     <ion-header-bar align-title="center" >
         <div class="buttons">
-            <a ng-href="#/" class="button">shots</a>
+            <a ng-click="back()" class="button btn_icon"><i class="icons icon_back"></i> Back</a>
         </div>
         <h1 class="title">{{ title }}</h1>
         <div class="buttons">
-          <a ng-href="#/profil" class="button">profil</a>
+            <a ng-href="#/profil" class="button btn_icon"><i class="icons icon_user"></i> Profil</a>
         </div>
     </ion-header-bar>
 
     <ion-content class="content_center">
-
+        <ion-refresher pulling-text="" on-refresh="doRefresh()">
+        </ion-refresher>
         <div id="shot">
+            <div id="shot_user">
+                <img src="{{ userShot }}" alt="{{ comment.username }}">
+                <span>{{ userName }}</span>
+            </div>
             <img src="{{ shotImages }}" alt="{{ title }}">
             <div id="shot_counts">
-                <span>{{ views }}<br>views</span>
-                <span>{{ likes }}<br>likes</span>
-                <span>{{ comments }}<br>comments</span>
+                <div class="count">
+                    <span>
+                        <strong>{{ views }}</strong>
+                        <br>
+                        <i class="icons icon_views"></i> views
+                    </span>
+                </div>
+                <div class="count">
+                    <span>
+                        <strong>{{ likes }}</strong>
+                        <br>
+                        <i class="icons icon_likes"></i> likes
+                    </span>
+                </div>
+                <div class="count">
+                    <span>
+                        <strong>{{ comments }}</strong>
+                        <br>
+                        <i class="icons icon_comments"></i> comments
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -27,8 +50,8 @@
                     <img src="{{ comment.user.avatar_url }}" alt="{{ comment.username }}">
                     <span>{{ comment.user.name }}</span>
                 </div>
-                <p id="comment_description">{{ comment.body }}</p>
-                <span id="comment_likes">{{ comment.likes_count }}</span>
+                <p id="comment_description">{{ comment.body }}</p><!--
+                --><span id="comment_likes">{{ comment.likes_count }}</span>
             </div>
         </div>
        
