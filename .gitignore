@@ -6,4 +6,8 @@ platforms/
 plugins/
 *.psd
 *.ai
+*.jpg
+*.png
+*.log
 .DS_Store
+*.DS_Store
