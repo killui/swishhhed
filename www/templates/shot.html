@@ -2,46 +2,59 @@
 
     <ion-header-bar align-title="center" >
         <div class="buttons">
-            <a ng-click="back()" class="button btn_icon"><i class="icons icon_back"></i> Back</a>
+            <a ng-click="back()" class="button btn_icon"><img class="icons" ng-src="http://swishhhed.com/img/icon_back@2X.png"></a>
         </div>
         <h1 class="title">{{ title }}</h1>
-        <div class="buttons">
-            <a ng-href="#/profil" class="button btn_icon"><i class="icons icon_user"></i> Profil</a>
-        </div>
+        <!-- <div class="buttons">
+            <a ng-href="#/profil" class="button btn_icon"><i class="icons icon_user"></i></a>
+        </div> -->
     </ion-header-bar>
 
     <ion-content class="content_center">
-        <ion-refresher pulling-text="" on-refresh="doRefresh()">
-        </ion-refresher>
+        <!-- <ion-refresher pulling-text="" on-refresh="doRefresh()">
+        </ion-refresher> -->
         <div id="shot">
+
             <div id="shot_user">
                 <img src="{{ userShot }}" alt="{{ comment.username }}">
                 <span>{{ userName }}</span>
             </div>
+
             <img src="{{ shotImages }}" alt="{{ title }}">
+
             <div id="shot_counts">
+
                 <div class="count">
                     <span>
                         <strong>{{ views }}</strong>
                         <br>
-                        <i class="icons icon_views"></i> views
+                        <img class="icons" ng-src="http://swishhhed.com/img/icon_views@2X.png"><span>views</span>
                     </span>
                 </div>
+
                 <div class="count">
                     <span>
                         <strong>{{ likes }}</strong>
                         <br>
-                        <i class="icons icon_likes"></i> likes
+                        <img class="icons" ng-src="http://swishhhed.com/img/icon_likes@2X.png"><span>likes</span>
                     </span>
                 </div>
+
                 <div class="count">
                     <span>
                         <strong>{{ comments }}</strong>
                         <br>
-                        <i class="icons icon_comments"></i> comments
+                        <img class="icons " ng-src="http://swishhhed.com/img/icon_comments@2X.png"><span>comments</span>
                     </span>
                 </div>
+
+
+                <div ng-if="description.length > 0" id="shot_description">
+                    {{ description }}
+                </div>
+
             </div>
+
         </div>
 
         <div id="shot_comment">

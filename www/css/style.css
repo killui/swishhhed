@@ -53,31 +53,31 @@
     top: 9px;
 }
 .icon_user {
-    background:url('../img/icon_user@2x.png')center no-repeat;
+    background: url('../img/icon_user@2x.png') no-repeat transparent;
     background-size: 16px 16px;
 }
 .icon_views {
-    background:url('../img/icon_views@2x.png')center no-repeat;
+    background: url('../img/icon_views@2x.png') no-repeat transparent;
     background-size: 16px 16px;
 }
 .icon_likes {
-    background:url('../img/icon_likes@2x.png')center no-repeat;
+    background: url('../img/icon_likes@2x.png') no-repeat transparent;
     background-size: 16px 16px;
 }
 .icon_comments {
-    background:url('../img/icon_comments@2x.png')center no-repeat;
+    background: url('../img/icon_comments@2x.png') no-repeat transparent;
     background-size: 16px 16px;
 }
 .icon_back {
-    background:url('../img/icon_back@2x.png')center no-repeat;
+    background: url('../img/icon_back@2x.png') no-repeat transparent;
     background-size: 16px 16px;
 }
 .icon_followers {
-    background:url('../img/icon_followers@2x.png')center no-repeat;
+    background: url('../img/icon_followers@2x.png') no-repeat transparent;
     background-size: 16px 16px;
 }
 .icon_followings {
-    background:url('../img/icon_followings@2x.png')center no-repeat;
+    background: url('../img/icon_followings@2x.png') no-repeat transparent;
     background-size: 16px 16px;
 }
 /**/
@@ -92,6 +92,11 @@ h1 {
     text-align: center;
 }
 
+.bar-header {
+    background: #ffffff;
+    border-bottom: solid 1px #f5f5f5;
+}
+
 /* shots */
 .shots {
     display: inline-block;
@@ -102,6 +107,7 @@ h1 {
     text-decoration: none;
     width: 42%;
     border-radius: 4px;
+    box-shadow: 0 1px 0px rgba(0,0,0,0.1);
 }
 .shots img {
     display: block;
@@ -151,9 +157,10 @@ h1 {
 }
 #shot img,
 #profil img {
-    width: 80%;
+    width: 100%;
+    min-height:330px; 
     display: block;
-    margin:0 10% 10%;
+    padding:0 6% 6%;
 }
 
 #shot #shot_user {
@@ -166,8 +173,10 @@ h1 {
     border-radius: 100%;
     display: inline-block;
     vertical-align: middle;
-    margin:5% 0 5% 10%;
+    margin:5% 0 5% 6%;
     background: #f5f5f5;
+    padding: 0;
+    min-height: inherit;
 }
 #shot #shot_user span {
     margin: 0 0 0 2%;
@@ -193,6 +202,18 @@ h1 {
     color: #9ba5a8;
     font-size: 14px;
 }
+
+#shot #shot_counts #shot_description,
+#profil #profil_counts #shot_description {
+    display: block;
+    border-top:solid 1px #f0f0f0;
+    text-align: left;
+    width: 88%;
+    margin: 2% 6% 0;
+    padding: 4% 0 2%;
+    color: #9ba5a8;
+}
+
 #shot #shot_counts .count span,
 #profil #profil_counts .count span {
     display: inline-block;
@@ -204,18 +225,21 @@ h1 {
 #profil #profil_counts .count span strong {
     color: #ff8833;
 }
-#shot #shot_counts .count span img,
-#profil #profil_counts .count span img {
+#shot #shot_counts .count span .icons,
+#profil #profil_counts .count span .icons {
     vertical-align: super;
     display: inline-block;
     margin-right: 6px;
     width: 16px;
+    top: 3px;
+    padding: 0;
+    min-height: inherit;
 }
 #shot_comment {
     background: #fff;
     display: block;
     width: 100%;
-    padding: 0 2%;
+    padding: 0 4%;
 }
 #shot_comment #comment {
     background: #fff;

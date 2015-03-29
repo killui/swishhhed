@@ -26,21 +26,22 @@ angular.module('swishhhed', ['ionic', 'starter.controllers','ionic.utils'])
       templateUrl: 'templates/shots.html',
       controller: 'shotsController'
     })
-    .state('login', {
-      url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'loginController'
-    })
+    // .state('login', {
+    //   url: '/login',
+    //   templateUrl: 'templates/login.html',
+    //   controller: 'loginController'
+    // })
     .state('shots', {
       url: '/shot/:shotId',
       templateUrl: 'templates/shot.html',
       controller: 'shotController'
     })
-    .state('profil', {
-      url: '/profil',
-      templateUrl: 'templates/profil.html',
-      controller: 'profilController'
-    });
+    // .state('profil', {
+    //   url: '/profil',
+    //   templateUrl: 'templates/profil.html',
+    //   controller: 'profilController'
+    // })
+    ;
     $urlRouterProvider.otherwise('/');
 })
 .config(['$compileProvider',function( $compileProvider ){ 
