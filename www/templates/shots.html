@@ -1,23 +1,30 @@
 <ion-view ng-controller="shotsController">
-    
-    <ion-header-bar align-title="center" >
-        <h1 class="title">Popular</h1>
-        <!-- <div class="buttons">
-            <a ng-href="#/profil" class="button btn_icon"><i class="icons icon_user"></i></a>
-        </div> -->
-    </ion-header-bar>
+<ion-header-bar align-title="center" >
+  <h1 class="title">Shots</h1>
+  <!-- <div class="buttons">
+  <a ng-href="#/profil" class="button btn_icon"><i class="icons icon_user"></i></a>
+  </div> -->
+</ion-header-bar>
+<ion-content class="content_center" header-shrink scroll-event-interval="4">
+  <div class="header_shrink"></div>
+  <ion-refresher pulling-text="" on-refresh="doRefresh()">
+  </ion-refresher>
 
-    <ion-content class="content_center">
-        <ion-refresher pulling-text="" on-refresh="doRefresh()">
-        </ion-refresher>
-        
-        <a ng-href="#/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots">
-            <img src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
-            <!-- <h2>{{ shot.title }}</h2> -->
-        </a>
+  <div class="button-bar">
+      <select class="button" ng-model="sort" ng-change="updateSort()" ng-options="sort.name for sort in sorts">
+      </select>
 
-        <ion-infinite-scroll on-infinite="loadMore()" distance="1%">
-        </ion-infinite-scroll>
-    </ion-content>
+      <select class="button" ng-model="time" ng-change="updateTime()" ng-options="time.name for time in times">
+      </select>
+  </div>
+
+  <a ng-href="#/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots">
+    <img src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
+    <!-- <h2>{{ shot.title }}</h2> -->
+  </a>
+
+  <ion-infinite-scroll on-infinite="loadMore()" distance="1%">
+  </ion-infinite-scroll>
+</ion-content>
 
 </ion-view>

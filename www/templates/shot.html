@@ -49,8 +49,8 @@
                 </div>
 
 
-                <div ng-if="description.length > 0" id="shot_description">
-                    {{ description }}
+                <div ng-if="description.length > 0" id="shot_description" ng-bind-html="description | sanitize">
+                    <!-- {{ description }} -->
                 </div>
 
             </div>
@@ -63,8 +63,8 @@
                     <img src="{{ comment.user.avatar_url }}" alt="{{ comment.username }}">
                     <span>{{ comment.user.name }}</span>
                 </div>
-                <p id="comment_description">{{ comment.body }}</p><!--
-                --><span id="comment_likes">{{ comment.likes_count }}</span>
+                <p id="comment_description" ng-bind-html="comment.body | sanitize">{{ comment.body }}</p><!--
+                --><span id="comment_likes" ng-bind-html="comment.likes_count | sanitize"><!-- {{ comment.likes_count }} --></span>
             </div>
         </div>
        
