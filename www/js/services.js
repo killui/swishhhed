@@ -8,11 +8,5 @@ angular.module('ionic.utils', [])
     get: function(key, defaultValue) {
       return $window.localStorage[key] || defaultValue;
     }
-    // setObject: function(key, value) {
-    //   $window.localStorage[key] = JSON.stringify(value);
-    // },
-    // getObject: function(key) {
-    //   return JSON.parse($window.localStorage[key] || '{}');
-    // }
   }
 }]);
