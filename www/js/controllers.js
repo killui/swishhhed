@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
-
-.controller('shotsController', function ($scope, $http, $ionicLoading) {
+//.constant('DribbbleApiUrl', '')
+.constant('DribbbleApiUrl', 'https://api.dribbble.com')
+.controller('shotsController', function ($scope, $http, $ionicLoading, DribbbleApiUrl) {
 
     var OAUTH_TOKEN = "f59e506fd880352413323c6b53cb72c91e2b2ec2c6fa7da64a5250e2484c891c";
     var PAGE = 1;
@@ -33,12 +34,12 @@ angular.module('starter.controllers', [])
             template: 'Loading...'
         });
 
-        var url = "https://api.dribbble.com/v1/shots?per_page="+SHOTS+"&sort="+SORT+"&timeframe="+TIMEFRAME;
+        var url = DribbbleApiUrl+"/v1/shots?per_page="+SHOTS+"&sort="+SORT+"&timeframe="+TIMEFRAME;
         var config = {
             headers: {
                 'Content-Type': 'application/json, text/html, application/javascript',
                 'Authorization': 'Bearer '+OAUTH_TOKEN,
-                'Origin': '*'
+                'Origin': 'null'
             },
             withCredentials: true
         };
@@ -79,11 +80,11 @@ angular.module('starter.controllers', [])
 
     getShots(); 
 })
-.controller('shotController', function ($scope, $http, $stateParams, $ionicNavBarDelegate) {
+.controller('shotController', function ($scope, $http, $stateParams, $ionicNavBarDelegate, DribbbleApiUrl) {
     var OAUTH_TOKEN = "f59e506fd880352413323c6b53cb72c91e2b2ec2c6fa7da64a5250e2484c891c";
     var shotId = $stateParams.shotId;
 
-    var url = "https://api.dribbble.com/v1/shots/"+shotId;
+    var url = DribbbleApiUrl+"/v1/shots/"+shotId;
     var config = {
         headers: {
             'Content-Type': 'application/json, text/html, application/javascript',
@@ -139,22 +140,12 @@ angular.module('starter.controllers', [])
             }
         });
     }
-    getInfoShot();
-
-    
+    getInfoShot();    
 })
-// .controller('loginController', function ($scope,$http,$localstorage,$ionicLoading,$location,$ionicNavBarDelegate) {
-//     $scope.user = {
-//         'username' : ''
-//     };
-//     $scope.finalSubmit = function() {
-//         $ionicLoading.hide();
-//         $localstorage.set('name', $scope.user.username);
-//         $location.path('/profil');
-//     }
-//     $scope.back = function() {
-//         window.history.back();
-//     }
+// .controller('loginController', function ($scope, $http, $cordovaInAppBrowser) {
+
+//     window.open( 'https://dribbble.com/session/new', '_system');
+
 // })
 // .directive('formManager', function($ionicLoading) {
 //     return {

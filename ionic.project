@@ -1,4 +1,10 @@
 {
   "name": "swishhhed",
-  "app_id": "175d464d"
+  "app_id": "175d464d",
+  "proxies": [
+    {
+      "path": "/v1",
+      "proxyUrl": "https://api.dribbble.com/v1"
+    }
+  ]
 }

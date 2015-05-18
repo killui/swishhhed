@@ -1,4 +1,12 @@
-angular.module('swishhhed', ['ionic', 'starter.controllers', 'ionic.utils', 'ionic.ion.headerShrink', 'ngSanitize'])
+angular.module('swishhhed', 
+  [
+    'ionic', 
+    'starter.controllers', 
+    'ionic.utils', 
+    'ngSanitize',
+    'ngCordova'
+  ]
+)
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -8,16 +16,18 @@ angular.module('swishhhed', ['ionic', 'starter.controllers', 'ionic.utils', 'ion
     }
 
     if(window.StatusBar) {
-      StatusBar.styleDefault();
+      StatusBar.show();
+      StatusBar.backgroundColorByName("red");
     }
 
   });
 })
+
 .run(function($localstorage) {
-
+  
   console.log($localstorage.get('name'));
-
 })
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -49,12 +59,30 @@ angular.module('swishhhed', ['ionic', 'starter.controllers', 'ionic.utils', 'ion
   $urlRouterProvider.otherwise('/');
 
 })
+
 .config(['$compileProvider',function( $compileProvider ){ 
 
   var oldWhiteList = $compileProvider.imgSrcSanitizationWhitelist();
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|blob|cdvfile):|data:image\//);
 
 }])
+
+.config(function($cordovaInAppBrowserProvider) {
+
+  var options = {
+    location: 'no',
+    clearcache: 'no',
+    toolbar: 'no'
+  };
+
+
+
+    $cordovaInAppBrowserProvider.setDefaultOptions(options)
+
+
+
+})
+
 .filter("sanitize", ['$sce', function($sce) {
   return function(htmlCode){
     return $sce.trustAsHtml(htmlCode);
