@@ -26,6 +26,19 @@
 }
 
 /* Icon */
+.button {
+    color: #adadad;
+}
+.button:hover
+ {
+    color: #ea4c89;
+}
+.bar .button.button-icon .icon:before, 
+.bar .button.button-icon.icon-left:before, 
+.bar .button.button-icon.icon-right:before, 
+.bar .button.button-icon:before {
+    font-size: 20px;
+}   
 .btn_icon {
     display: block;
     background: none !important;
@@ -94,7 +107,7 @@ a {
 }
 
 .popover {
-    height: 145px;
+    height: 160px;
 
 }
 .popover .select {

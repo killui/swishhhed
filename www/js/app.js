@@ -48,26 +48,26 @@ angular.module('swishhhed',
   $stateProvider
   // setup an abstract state for the tabs directive
 
-  .state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'loginController'
-  })
+  // .state('login', {
+  //   url: '/login',
+  //   templateUrl: 'templates/login.html',
+  //   controller: 'loginController'
+  // })
 
-  .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabbar.html"
-  })
+  // .state('tab', {
+  //   url: "/tab",
+  //   abstract: true,
+  //   templateUrl: "templates/tabbar.html"
+  // })
 
-  .state('tab.home', {
+  .state('home', {
     url: '/home',
-    views: {
-      "home" : {
+    // views: {
+    //   "home" : {
         templateUrl: 'templates/shots.html',
         controller: 'shotsController'
-      }
-    }
+      //}
+    //}
     
   })
 
@@ -77,18 +77,18 @@ angular.module('swishhhed',
     controller: 'shotController'
   })
 
-  .state('tab.profil', {
-    url: '/profil',
-    views: {
-      "profil" : {
-        templateUrl: 'templates/profil.html',
-        controller: 'profilController'
-      }
-    }
-  })
+  // .state('tab.profil', {
+  //   url: '/profil',
+  //   views: {
+  //     "profil" : {
+  //       templateUrl: 'templates/profil.html',
+  //       controller: 'profilController'
+  //     }
+  //   }
+  // })
   ;
 
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/home');
 
 })
 
