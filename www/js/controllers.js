@@ -117,7 +117,7 @@ angular.module('starter.controllers', [])
     getShots(); 
 })
 .controller('shotController', function ($scope, $http, $stateParams, $ionicNavBarDelegate, DribbbleApiUrl, $sce) {
-    var OAUTH_TOKEN = "f59e506fd880352413323c6b53cb72c91e2b2ec2c6fa7da64a5250e2484c891c";
+    var OAUTH_TOKEN = clientAccessToken;
     var shotId = $stateParams.shotId;
 
     var url = DribbbleApiUrl+"/v1/shots/"+shotId;
@@ -180,33 +180,35 @@ angular.module('starter.controllers', [])
 })
 .controller('loginController', function ($scope, $http, $cordovaInAppBrowser, $location, $localstorage) {
 
-    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
     var http = "https://dribbble.com/oauth/token";
     var config = {
+        headers: {
+            'Content-Type': 'application/json, text/html, application/javascript',
+        },
         data : {
             'client_id':$localstorage.get('clientId'),
             'client_secret':$localstorage.get('clientSecret'),
             'code' : $localstorage.get('requestToken'),
-            'redirect_uri': 'http://localhost:8100/tab/profil'
+            'redirect_uri': 'http://localhost:8100/callback'
         },
     };
 
     $scope.login = function() {
-        var ref = window.open('https://dribbble.com/oauth/authorize?client_id='+$localstorage.get('clientId')+'&scope=public+write+comment+upload&redirect_uri=http://localhost:8100/tab/profil', '_system');
+        var ref = window.open('https://dribbble.com/oauth/authorize?client_id='+$localstorage.get('clientId')+'&scope=public+write+comment+upload&redirect_uri=http://localhost:8100/callback', '_self','location=yes');
         ref.addEventListener('loadstart', function(event) { 
-            if((event.url).startsWith("http://localhost:8100/tab/profil")) {
+            if((event.url).startsWith("http://localhost:8100/callback")) {
                 $localStorage.set("requestToken",(event.url).split("code=")[1]);
 
                 $http.post(http, config)
                 .success(function(data) {
+                    accessToken = data.access_token;
                     $localStorage.set("accessToken", data.access_token);
                     $location.path("/profil");
                 })
                 .error(function(data, status) {
                     alert(data);
                 });
-                //ref.close();
+                ref.close();
             }
         });
     }
@@ -216,6 +218,11 @@ angular.module('starter.controllers', [])
             return this.indexOf(str) == 0;
         };
     }
+})
+.controller('SecureController', function($scope, $http) {
+ 
+    $scope.accessToken = accessToken;
+    
 })
 .controller('profilController', function ($scope, $http, $localstorage, $location, $ionicNavBarDelegate) {
 
