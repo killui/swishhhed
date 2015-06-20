@@ -1,13 +1,10 @@
-<ion-view ng-controller="shotController">
+<ion-view ng-controller="shotController" title="shot">
 
     <ion-header-bar align-title="center" >
         <div class="buttons">
             <a ng-click="back()" class="button btn_icon"><img class="icons" ng-src="http://swishhhed.com/img/icon_back@2X.png"></a>
         </div>
         <h1 class="title">{{ title }}</h1>
-        <!-- <div class="buttons">
-            <a ng-href="#/profil" class="button btn_icon"><i class="icons icon_user"></i></a>
-        </div> -->
     </ion-header-bar>
 
     <ion-content class="content_center">
@@ -65,7 +62,7 @@
                     <span>{{ comment.user.name }}</span>
                 </div>
                 <p id="comment_description" ng-bind-html="comment.body | sanitize">{{ comment.body }}</p><!--
-                --><span id="comment_likes" ng-bind-html="comment.likes_count | sanitize"><!-- {{ comment.likes_count }} --></span>
+                --><span id="comment_likes" ng-bind-html="comment.likes_count"><!-- {{ comment.likes_count }} --></span>
             </div>
         </div>
        

@@ -1,27 +1,17 @@
-<ion-view ng-controller="shotsController">
+<ion-view ng-controller="shotsController" title="home">
 
   <ion-header-bar align-title="center" >
 
     <h1 class="title">Shots</h1>
 
+    <div class="buttons">
+      <a class="button button-icon ion-more" ng-click="popover.show($event)"></a>
+    </div>
   </ion-header-bar>
 
   <ion-content class="content_center">
     <ion-refresher pulling-text="" on-refresh="doRefresh()">
     </ion-refresher>
-
-    <div class="multiple_select">
-      <div class="select select_left">
-        <select ng-model="sort" ng-change="updateSort()" ng-options="sort.name for sort in sorts">
-        </select>
-        <i class="icon ion-ios-arrow-down"></i>
-      </div><!--
-      --><div class="select select_right">
-        <select ng-model="time" ng-change="updateTime()" ng-options="time.name for time in times">
-        </select>
-        <i class="icon ion-ios-arrow-down"></i>
-      </div>
-    </div>
 
     <a ng-href="#/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots">
 
@@ -33,5 +23,29 @@
     </ion-infinite-scroll>
 
   </ion-content>
+
+  <script id="templates/popover.html" type="text/ng-template">
+    <ion-popover-view>
+      <ion-content>
+        
+      <div class="select">
+        <select ng-model="sort" ng-change="updateSort()" ng-options="sort.name for sort in sorts">
+        </select>
+        <i class="icon ion-ios-arrow-down"></i>
+      </div>
+      <div class="select">
+        <select ng-model="list" ng-change="updateList()" ng-options="list.name for list in lists">
+        </select>
+        <i class="icon ion-ios-arrow-down"></i>
+      </div>
+      <div class="select">
+        <select ng-model="time" ng-change="updateTime()" ng-options="time.name for time in times">
+        </select>
+        <i class="icon ion-ios-arrow-down"></i>
+      </div>
+    
+      </ion-content>
+    </ion-popover-view>
+  </script>
 
 </ion-view>
