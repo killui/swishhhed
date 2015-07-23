@@ -161,6 +161,10 @@ a {
   font-family:'kohinoor_devanagaribook';
   font-weight: 300;
 }
+.slider-slide a {
+    color: #fff;
+}
+
 .slider-pager .slider-pager-page {
     color: #fff;
     width: 8px;
