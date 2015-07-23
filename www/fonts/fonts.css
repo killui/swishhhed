@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'kohinoor_devanagarimedium';
+    src: url('kohinoordevanagari-medium-webfont.eot');
+    src: url('kohinoordevanagari-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('kohinoordevanagari-medium-webfont.woff2') format('woff2'),
+         url('kohinoordevanagari-medium-webfont.woff') format('woff'),
+         url('kohinoordevanagari-medium-webfont.ttf') format('truetype'),
+         url('kohinoordevanagari-medium-webfont.svg#kohinoor_devanagarimedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'kohinoor_devanagaribook';
+    src: url('kohinoordevanagari-book-webfont.eot');
+    src: url('kohinoordevanagari-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('kohinoordevanagari-book-webfont.woff2') format('woff2'),
+         url('kohinoordevanagari-book-webfont.woff') format('woff'),
+         url('kohinoordevanagari-book-webfont.ttf') format('truetype'),
+         url('kohinoordevanagari-book-webfont.svg#kohinoor_devanagaribook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

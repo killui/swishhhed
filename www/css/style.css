@@ -1,29 +1,14 @@
 /* Empty. Add your own CSS if you like */
 
-/* Reset icon */
-.ion-ios7-arrow-down {
-    background-size: 16px 16px;
-}
-.ion-ios7-arrow-down:before {
-    position: relative;
-    background: none;
-    background-size: 16px 16px;
-    content: " ";
-    width: 16px;
-    height: 16px;
-    display: block;
-    margin: 0 auto;
-}
-.ion-loading-d:before {
-    position: relative;
-    background: url('../img/loader@2x.png')center no-repeat;
-    background-size: 30px 30px;
-    content: " ";
-    width: 30px;
-    height: 30px;
-    display: block;
-    margin: 0 auto;
-}
+/** Color 
+
+grey: #9ba5a8;
+pink: #e6175c;
+blue: #e6175c;
+green: #28b453;
+orange: #ff7433;
+
+**/
 
 /* Icon */
 .button {
@@ -58,48 +43,18 @@
     opacity: 1;
 }
 
-.icons {
-    position: relative;
-    display: block;
-    width: 16px;
-    height: 16px;
-    top: 9px;
-}
-.icon_user {
-    background: url('../img/icon_user@2x.png') no-repeat transparent;
-    background-size: 16px 16px;
-}
-.icon_views {
-    background: url('../img/icon_views@2x.png') no-repeat transparent;
-    background-size: 16px 16px;
-}
-.icon_likes {
-    background: url('../img/icon_likes@2x.png') no-repeat transparent;
-    background-size: 16px 16px;
-}
-.icon_comments {
-    background: url('../img/icon_comments@2x.png') no-repeat transparent;
-    background-size: 16px 16px;
-}
-.icon_back {
-    background: url('../img/icon_back@2x.png') no-repeat transparent;
-    background-size: 16px 16px;
-}
-.icon_followers {
-    background: url('../img/icon_followers@2x.png') no-repeat transparent;
-    background-size: 16px 16px;
-}
-.icon_followings {
-    background: url('../img/icon_followings@2x.png') no-repeat transparent;
-    background-size: 16px 16px;
-}
 /**/
 h1 {
-    color: #ea4c89;
+    color: #e6175c;
+    font-family: 'kohinoor_devanagarimedium';
+}
+h2 {
+    color: #fff;
+    font-family: 'kohinoor_devanagarimedium';
 }
 a {
     text-decoration: none;
-    color: #00b6e3;
+    color: #e6175c;
 }
 
 .popover-backdrop.active {
@@ -148,16 +103,18 @@ a {
 }
 
 .pane {
-    background: #f5f5f5;
+    background: #e6e6e6;
 }
 
 .content_center {
     text-align: center;
+    font-family: 'kohinoor_devanagarimedium';
 }
 
 .bar-header {
     background: #ffffff;
     border-bottom: solid 1px #f5f5f5;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1); 
 }
 
 /*.has-header {
@@ -168,6 +125,10 @@ a {
 .tabs {
     background: #ffffff;
     border-top: solid 1px #f5f5f5;
+}
+
+.tab-item-active {
+    color: #e6175c;
 }
 
 .button-bar {
@@ -186,38 +147,71 @@ a {
     line-height: 1;
 }
 
+
+/* Slider Intro */
+
+.slider {
+  height: 100%;
+}
+.slider-slide {
+  padding-top: 88px;
+  color: #fff;
+  background: #e6175c;
+  text-align: center;
+  font-family:'kohinoor_devanagaribook';
+  font-weight: 300;
+}
+.slider-pager .slider-pager-page {
+    color: #fff;
+    width: 8px;
+    font-size: 8px;
+}
+
 /* shots */
 .shots {
+    box-sizing:border-box;
     display: inline-block;
     vertical-align: top;
     background-color: #fff;
-    padding: 10px;
-    margin:30px 15px 0;
+    padding: 12px;
+    margin:16px 8px 0;
     text-decoration: none;
-    width: 42%;
-    max-width: 200px;
+    width: 163.5px;
+    min-height: 150px;
     border-radius: 4px;
-    box-shadow: 0 1px 0px rgba(0,0,0,0.1);
 }
 .shots img {
     display: block;
     width: 100%;
 }
-.shots h2 {
-    width: 100%;
+.shots .shots_info {
     display: block;
-    margin: 20px 0 0;
-    color: #9ba5a8;
-    font-size: 16px;
-    line-height: 1.2;
+    width: 100%;
+    margin-top: 12px;
 }
-.shots span {
+.shots .shots_info span {
     display: inline-block;
     vertical-align: top;
-    color: #adadad;
-    font-size: 10px;
+    color: #9ba5a8;
+    font-size: 14px;
+    width: calc(100% / 3);
 }
 
+.shots .shots_info span.shots_view {
+    text-align: left;
+}
+.shots .shots_info span.shots_comments {
+    text-align: center;
+}
+.shots .shots_info span.shots_likes {
+    text-align: right;
+}
+.shots .shots_info span i {
+    font-size: 14px;
+    color: #adadad;
+    margin-right: 4px;
+    display: inline-block;
+}
 /* Shot */
 #shot,
 #profil {

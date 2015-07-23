@@ -1,4 +1,4 @@
-<ion-view ng-controller="shotsController" title="home">
+<ion-view ng-controller="shotsController" title="shots">
 
   <ion-header-bar align-title="center" >
 
@@ -10,17 +10,20 @@
   </ion-header-bar>
 
   <ion-content class="content_center">
-    <ion-refresher pulling-text="" on-refresh="doRefresh()">
-    </ion-refresher>
+    <ion-refresher pulling-text="" on-refresh="doRefresh()"></ion-refresher>
 
-    <a ng-href="#/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots">
+    <a href="#/tab/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots">
 
       <img src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
-
+      
+      <div class="shots_info">
+        <span class="shots_view"><i class="ion-eye"></i>{{ shot.views_count }}</span><!--
+        --><span class="shots_comments"><i class="ion-chatbubble"></i>{{ shot.comments_count }}</span><!--
+        --><span class="shots_likes"><i class="ion-heart"></i>{{ shot.likes_count }}</span>
+      </div>
     </a>
 
-    <ion-infinite-scroll on-infinite="loadMore()" distance="1%">
-    </ion-infinite-scroll>
+    <ion-infinite-scroll on-infinite="loadMore()" distance="0%"></ion-infinite-scroll>
 
   </ion-content>
 

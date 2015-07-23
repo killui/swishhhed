@@ -4,9 +4,27 @@ angular.module('starter.controllers', [])
 .constant('DribbbleApiUrl', 'https://api.dribbble.com')
 //////////////////////
 ///////// Controller
-.controller('shotsController', function ($scope, $http, $ionicLoading, DribbbleApiUrl, $ionicPopover, $location) {
+.controller('introController', function($scope, $state, $ionicSlideBoxDelegate) {
+ 
+  // Called to navigate to the main app
+  $scope.startApp = function() {
+    $state.go('main');
+  };
+  $scope.next = function() {
+    $ionicSlideBoxDelegate.next();
+  };
+  $scope.previous = function() {
+    $ionicSlideBoxDelegate.previous();
+  };
 
-    console.log($location);
+  // Called each time the slide changes
+  $scope.slideChanged = function(index) {
+    $scope.slideIndex = index;
+  };
+})
+.controller('homeController', function($scope) {  
+})
+.controller('shotsController', function($scope, $http, $ionicLoading, DribbbleApiUrl, $ionicPopover, $location) {
 
     var OAUTH_TOKEN = "f59e506fd880352413323c6b53cb72c91e2b2ec2c6fa7da64a5250e2484c891c";
     var PAGE = 1;
@@ -60,12 +78,8 @@ angular.module('starter.controllers', [])
     $scope.time = $scope.times[0];
     $scope.list = $scope.lists[0];
 
+    var i = 0;
     function getShots() {
-
-        $ionicLoading.show({
-            template: 'Loading...'
-        });
-
         var url = DribbbleApiUrl+"/v1/shots?per_page="+SHOTS+"&sort="+SORT+"&timeframe="+TIMEFRAME+"&list="+LIST;
         var config = {
             headers: {
@@ -79,12 +93,14 @@ angular.module('starter.controllers', [])
         $http.get(url,config)
         .success(function(data) {            
             $scope.data = data;
+            console.log(data);
+
         })
         .error(function(err) {
             console.log(err);
         })
         .finally(function() {
-            $ionicLoading.hide();
+           
             $scope.$broadcast('scroll.refreshComplete');
             $scope.$broadcast('scroll.infiniteScrollComplete');
 
@@ -92,16 +108,13 @@ angular.module('starter.controllers', [])
                 SHOTS = SHOTS + 24;
                 getShots();
             }
-
             $scope.doRefresh = function() {
                 getShots();
             }
-            
             $scope.updateSort = function() {
                 SORT = this.sort.value;
                 getShots();
             } 
-
             $scope.updateTime = function() {
                 TIMEFRAME = this.time.value;
                 getShots();
@@ -110,13 +123,12 @@ angular.module('starter.controllers', [])
                 LIST = this.list.value;
                 getShots();
             } 
-
         });
     }
 
     getShots(); 
 })
-.controller('shotController', function ($scope, $http, $stateParams, $ionicNavBarDelegate, DribbbleApiUrl, $sce) {
+.controller('shotController', function($scope, $http, $stateParams, $ionicNavBarDelegate, DribbbleApiUrl, $sce, $location) {
     var OAUTH_TOKEN = "f59e506fd880352413323c6b53cb72c91e2b2ec2c6fa7da64a5250e2484c891c";
     var shotId = $stateParams.shotId;
 
@@ -152,13 +164,7 @@ angular.module('starter.controllers', [])
 
             var urlComments = data.comments_url;
 
-            $http.get(urlComments,config)
-            .success(function(comments) {
-                $scope.comment = comments;
-            })
-            .error(function(err) {
-                console.log(err);
-            });
+            getShotComments(urlComments, config);
             
         })
         .error(function(err) {
@@ -176,9 +182,21 @@ angular.module('starter.controllers', [])
             }
         });
     }
+
+    function getShotComments(urlComments, config)
+    {
+        $http.get(urlComments,config)
+            .success(function(comments) {
+                $scope.comment = comments;
+            })
+            .error(function(err) {
+                console.log(err);
+            });
+    }
+
     getInfoShot();    
 })
-.controller('loginController', function ($scope, $http, $cordovaInAppBrowser, $location, $localstorage) {
+.controller('loginController', function($scope, $http, $cordovaInAppBrowser, $location, $localstorage) {
 
     $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
@@ -217,7 +235,9 @@ angular.module('starter.controllers', [])
         };
     }
 })
-.controller('profilController', function ($scope, $http, $localstorage, $location, $ionicNavBarDelegate) {
+.controller('uploadController', function($scope) {  
+})
+.controller('profilController', function($scope, $http, $localstorage, $location, $ionicNavBarDelegate) {
 
     if ($localstorage.get('accessToken') == null) {
         $location.path('/login');
@@ -229,7 +249,7 @@ angular.module('starter.controllers', [])
 
         var OAUTH_TOKEN = "f59e506fd880352413323c6b53cb72c91e2b2ec2c6fa7da64a5250e2484c891c";
         var USERNAME = $localstorage.get('name');
-        var url = "https://api.dribbble.com/v1/users/"+USERNAME;
+        var url = "https://api.dribbble.com/v1/user";
         var config = {
             headers: {
                 'Content-Type': 'application/json, text/html, application/javascript',
@@ -264,47 +284,4 @@ angular.module('starter.controllers', [])
         });
     }
 })
-///////////////////////
-///////// Directive
-// .directive('headerShrink', function($document) {
-//   var fadeAmt;
-
-//   var shrink = function(header, content, amt, max) {
-//     amt = Math.min(44, amt);
-//     fadeAmt = 1 - amt / 44;
-//     ionic.requestAnimationFrame(function() {
-//       header.style[ionic.CSS.TRANSFORM] = 'translate3d(0, -' + amt + 'px, 0)';
-//       for(var i = 0, j = header.children.length; i < j; i++) {
-//         header.children[i].style.opacity = fadeAmt;
-//       }
-//     });
-//   };
-
-//   return {
-//     restrict: 'A',
-//     link: function($scope, $element, $attr) {
-//       var starty = $scope.$eval($attr.headerShrink) || 0;
-//       var shrinkAmt;
-      
-//       var header = $document[0].body.querySelector('.bar-header');
-//       var headerHeight = header.offsetHeight;
-      
-//       $element.bind('scroll', function(e) {
-//         var scrollTop = null;
-//         if(e.detail){
-//           scrollTop = e.detail.scrollTop;
-//         }else if(e.target){
-//           scrollTop = e.target.scrollTop;
-//         }
-//         if(scrollTop > starty){
-//           // Start shrinking
-//           shrinkAmt = headerHeight - Math.max(0, (starty + headerHeight) - scrollTop);
-//           shrink(header, $element[0], shrinkAmt, headerHeight);
-//         } else {
-//           shrink(header, $element[0], 0, headerHeight);
-//         }
-//       });
-//     }
-//   }
-// })
 ;
