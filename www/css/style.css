@@ -4,44 +4,11 @@
 
 grey: #9ba5a8;
 pink: #e6175c;
-blue: #e6175c;
+blue: #639FE6;
 green: #28b453;
 orange: #ff7433;
 
 **/
-
-/* Icon */
-.button {
-    color: #adadad;
-}
-.button:hover
- {
-    color: #ea4c89;
-}
-.bar .button.button-icon .icon:before, 
-.bar .button.button-icon.icon-left:before, 
-.bar .button.button-icon.icon-right:before, 
-.bar .button.button-icon:before {
-    font-size: 20px;
-}   
-.btn_icon {
-    display: block;
-    background: none !important;
-    border:none !important;
-    opacity: .6;
-}
-.btn_icon:after {
-    content: none;
-    display: none;
-}
-
-.btn_icon:focus,
-.btn_icon:active,
-.btn_icon:hover {
-    box-shadow: none;
-    outline: none;
-    opacity: 1;
-}
 
 /**/
 h1 {
@@ -54,40 +21,15 @@ h2 {
 }
 a {
     text-decoration: none;
-    color: #e6175c;
-}
-
-.popover-backdrop.active {
-    background: none;
-}
-
-.popover {
-    height: 160px;
-
-}
-.popover .select {
-    width: calc(100% - 20px);
-    margin: 10px auto 0;
-}
-
-.multiple_select {
-    border:solid 2px #ea4c89;
-    width: 90%;
-    margin: 6% auto 3%;
-    border-radius: 2px;
+    color: #639fe6;
 }
 
 .select {
     display: block;
     width: 100%;
-    border: solid 1px #ea4c89;
-    border-radius: 2px;
-}
-.select.select_left {
-    border-right: solid 1px #ea4c89;
-}
-.select.select_right {
-    border-left: solid 1px #ea4c89;
+    border-top: solid 1px #e6175c;
+    border-bottom: solid 1px #e6175c;
+    border-left: solid 1px #e6175c;
 }
 .select select {
     text-align: center;
@@ -96,12 +38,19 @@ a {
     border: none;
     background: none;
     padding: 6px 10px;
-    color: #ea4c89;
+    color: #e6175c;
     display: inline-block;
     width: 100%;
-
+    white-space: nowrap;
 }
 
+.select:first-child {
+    border-radius: 2px 0 0 2px;
+}
+.select:last-child {
+    border-radius: 0 2px 2px 0;
+    border-right: solid 1px #e6175c;
+}
 .pane {
     background: #e6e6e6;
 }
@@ -110,21 +59,42 @@ a {
     text-align: center;
     font-family: 'kohinoor_devanagarimedium';
 }
-
-.bar-header {
-    background: #ffffff;
-    border-bottom: solid 1px #f5f5f5;
-    box-shadow: 0 1px 2px rgba(0,0,0,.1); 
+.scroll-content {
+    padding-top: 0!important;
 }
 
-/*.has-header {
-    top: inherit;
-    padding-top: 44px;
-}*/
+.bar-header {
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    background-image: none;
+    border-bottom: none;
+    background: #ffffff;
+    border-bottom: none!important;
+    box-shadow: 0 0px 2px rgba(0,0,0,.1);
+}
+.bar-header.noborder {
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    background-image: none;
+    border-bottom: none;
+    border-bottom: none!important;
+}
+
+.bar.bar-subheader {
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    background-image: none;
+    border-bottom: none;
+    padding: 0 16px;
+    border-bottom: none!important;
+    box-shadow: 0 0px 2px rgba(0,0,0,.1);
+}
 
 .tabs {
+    border-top: 1px solid #ddd;
+    border-color: none!important;
     background: #ffffff;
-    border-top: solid 1px #f5f5f5;
+    box-shadow: 0 0px 2px rgba(0,0,0,.1);
 }
 
 .tab-item-active {
@@ -132,21 +102,29 @@ a {
 }
 
 .button-bar {
-    font-size: 12px;
-    margin: 12% auto 3%;
-    width: 90%;
-}
-.button-bar .button {
-    font-size: 14px;
-    background: none;
-    border-color:#ea4c89;
-    color: #ea4c89;
-    min-height: inherit;
-    padding: 2% 3%;
-    text-align: center;
-    line-height: 1;
+    margin: 0 auto;
 }
 
+.button {
+    font-size: 10px;
+    color: #e6175c;
+    text-align: center;
+}
+
+.button-bar .select {
+    padding: 0;
+    font-size: 10px;
+    font-family: 'kohinoor_devanagaribook';
+}
+
+.button-bar .select select {
+    padding: 6px 6px;
+    font-size: 14px;
+}
+
+.bar .button.button-icon:before {
+    font-size: 24px;
+}
 
 /* Slider Intro */
 
@@ -217,16 +195,31 @@ a {
     display: inline-block;
 }
 /* Shot */
-#shot,
-#profil {
+
+.action_like {
+    position: absolute;
+    top: 5px;
+    right: 88px!important;
+}
+.action_comment {
+    position: absolute;
+    top: 5px;
+    right: 44px!important;
+}
+.action_share {
+    position: absolute;
+    top: 5px;
+    right: 0px!important;
+}
+
+#shot {
     width: 100%;
     background: #fff;
 }
-#shot img,
-#profil img {
+#shot img {
     width: 100%;
     display: block;
-    padding:0 6% 6%;
+    padding:16px;
 }
 
 #shot #shot_user {
@@ -239,60 +232,55 @@ a {
     border-radius: 100%;
     display: inline-block;
     vertical-align: middle;
-    margin:5% 0 5% 6%;
+    margin:16px 16px 0;
     background: #f5f5f5;
     padding: 0;
     min-height: inherit;
 }
-#shot #shot_user span {
-    margin: 0 0 0 2%;
+#shot #shot_user p {
+    margin:16px 0 0;
     display: inline-block;
-    color: #333333;
+    color: #9ba5a8;
+    font-size: 14px;
+    vertical-align: middle;
+    width: calc(100% - 114px);
 }
 
-#shot #shot_counts,
-#profil #profil_counts {
+#shot #shot_user p .title {
+    color: #e6175c;
+    font-size: 16px;
+}
+#shot #shot_user p .username {
+    color: #639FE6;
+}
+
+#shot #shot_counts {
     display: block;
     width: 100%;
     text-align: center;
-    padding: 20px 0;
-    background: #f5f5f5;
+    padding: 0;
+    background: #E5E5E5;
 }
 
-#shot #shot_counts .count,
-#profil #profil_counts .count {
+#shot #shot_counts .count {
     display: inline-block;
     width: 30%;
     text-align: center;
     vertical-align: top;
     color: #9ba5a8;
-    font-size: 14px;
+    font-size: 16px;
+    margin: 16px 0 10px;
 }
 
-#shot #shot_counts #shot_description,
-#profil #profil_counts #shot_description {
-    display: block;
-    border-top:solid 1px #f0f0f0;
-    text-align: left;
-    width: 88%;
-    margin: 2% 6% 0;
-    padding: 4% 0 2%;
-    color: #9ba5a8;
-}
-
-#shot #shot_counts .count span,
-#profil #profil_counts .count span {
+#shot #shot_counts .count span{
     display: inline-block;
     vertical-align: top;
 }
 #shot #shot_counts .count span strong {
-    color: #ea4c89;
+    color: #e6175c;
 }
-#profil #profil_counts .count span strong {
-    color: #ff8833;
-}
-#shot #shot_counts .count span .icons,
-#profil #profil_counts .count span .icons {
+
+#shot #shot_counts .count span .icons {
     vertical-align: super;
     display: inline-block;
     margin-right: 6px;
@@ -301,50 +289,86 @@ a {
     padding: 0;
     min-height: inherit;
 }
+
+#shot #shot_description {
+    background: #E5E5E5;
+    display: block;
+    text-align: left;
+    width:100%;
+    margin:0;
+    padding:0;
+    color: #9ba5a8;
+}
+
+#shot #shot_description p {
+    margin: 0 auto 6px;
+    width: calc(100% - 32px);
+}
+#shot #shot_description p:first-child {
+    border-top:solid 1px #ccc;
+    padding: 32px 0 0;
+}
+#shot #shot_description p:last-child {
+    padding: 0 0 32px;
+    margin: 0 auto;
+}
+#shot #shot_description p:only-child {
+    padding: 32px 0;
+    margin: 0 auto;
+}
+
 #shot_comment {
     background: #fff;
     display: block;
     width: 100%;
-    padding: 0 4%;
+    padding: 0 0 0 16px;
+    border-top: solid 1px #ddd; 
 }
-#shot_comment #comment {
-    background: #fff;
-    padding: 2%;
+#shot_comment .comment {
+    padding:16px 0;
     width: 100%;
     display: block;
     border-bottom:solid 1px #f5f5f5;
 }
-#shot_comment #comment #comment_user {
+#shot_comment .comment:last-child {
+    border-bottom: none!important;
+}
+
+#shot_comment .comment #comment_user {
     width: 100%;
     display: block;
     vertical-align: middle;
     color: #333333;
     text-align: left;
 }
-#shot_comment #comment #comment_user img {
+#shot_comment .comment #comment_user img {
     box-sizing:border-box;
     width: 40px;
-    border-radius: 60px;
+    border-radius: 40px;
     display: inline-block;
     vertical-align: middle;
 }
-#shot_comment #comment #comment_user span {
+#shot_comment .comment #comment_user span {
     display: inline-block;
     vertical-align: middle;
-    font-size: 16px;
-    margin: 0 0 0 2%;
+    font-size: 14px;
+    margin:0 8px;
+    color: #333333;
 }
 
-#shot_comment #comment #comment_description {
+#shot_comment .comment #comment_description {
     box-sizing:border-box;
-    width: 88%;
+    width: 100%;
     display: inline-block;
     text-align: left;
     vertical-align: middle;
-    color: #333333;
-    padding: 2% 0 0;
+    color: #9ba5a8;
+    padding:0 0 0 52px;
 }
-#shot_comment #comment #comment_likes {
+#shot_comment .comment #comment_description p {
+    margin: 0;
+}
+#shot_comment .comment #comment_likes {
     box-sizing:border-box;
     width: 12%;
     display: inline-block;
@@ -352,4 +376,218 @@ a {
     vertical-align: top;
     color: #9ba5a8;
     padding: 2% 0 0;
+}
+
+
+/* Menu Shot */
+
+.view {
+    background:  #e6175c;
+}
+.menu-right {
+    background: none;
+    padding: 30px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    height: 100%;
+}
+
+.menu-animated {
+    -webkit-transform: perspective( 0px ) rotateY(0deg) scale(1) translate3d(0px, 0px, 0px)!important;
+    -moz-transform: perspective( 0px ) rotateY(0deg) scale(1) translate3d(0px, 0px, 0px)!important;
+    -o-transform: perspective( 0px ) rotateY(0deg) scale(1) translate3d(0px, 0px, 0px)!important;
+    transform: perspective( 0px ) rotateY(0deg) scale(1) translate3d(0px, 0px, 0px)!important;   
+}
+
+.menu-isOpen {
+    -webkit-transform: perspective( 0px ) rotateY(0deg) scale(.94) translate3d(-68px, 0px, 0px)!important;
+    -moz-transform: perspective( 0px ) rotateY(0deg) scale(.94) translate3d(-68px, 0px, 0px)!important;
+    -o-transform: perspective( 0px ) rotateY(0deg) scale(.94) translate3d(-68px, 0px, 0px)!important;
+    transform: perspective( 0px ) rotateY(0deg) scale(.94) translate3d(-68px, 0px, 0px)!important;
+}
+
+#action_shot {
+    position: relative;
+    top: calc(50% - 162px);
+}
+
+#action_shot .action_shot {
+    display: block;
+    margin: 0 0 60px;
+}
+#action_shot .action_shot i {
+    font-size: 20px;
+}
+
+
+/* Profil */
+#profil {
+    width: 100%;
+    position: relative;
+}
+
+#profil #profil_user {
+    width: 100%;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+#profil #profil_user .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    filter:blur(20px);
+    -webkit-filter:blur(20px);
+    z-index: 1;
+}
+
+#profil #profil_user .user_avatar {
+    position: relative;
+    z-index: 2;
+    width: 80px;
+    height: 80px;
+    border-radius: 120px;
+    margin: 30px auto 0;
+}
+#profil #profil_user .user_name {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    font-size: 24px;
+    margin: 15px 0;
+    color: #fff;
+    text-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+#profil #profil_user .user_name .user_pro {
+    background: #ff7433;
+    padding:3px 8px 0px;
+    font-size: 12px;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+#profil #profil_user .user_bio {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    font-size: 12px;
+    color: #fff;
+    text-shadow:0 0 10px rgba(0,0,0,.2);
+    padding: 0 32px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+#profil #profil_user .user_bio a {
+    color: #e6175c;
+}
+
+#profil #profil_counts {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    background: #ffffff;
+}
+
+#profil #profil_counts .count {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    vertical-align: top;
+    color: #9ba5a8;
+    font-size: 16px;
+    margin: 16px 0 10px;
+}
+
+#profil #profil_counts .count span{
+    display: inline-block;
+    vertical-align: top;
+}
+#profil #profil_counts .count span strong {
+    color: #e6175c;
+}
+
+.list {
+    background: #ffffff;
+    border-top:solid 1px #ddd;
+    border-bottom:solid 1px #ddd;
+    margin: 30px 0;
+}
+
+.list li {
+    position: relative;
+    text-align: left;
+    font-size: 14px;
+    color: #333333;
+    padding: 14px 0 10px;
+    width: calc(100% -15px);
+    margin-left: 15px;
+    border-bottom: solid 1px #f5f5f5;
+}
+
+.list li span {
+    position: absolute;
+    right: 60px;
+    color: #9ba5a8;
+}
+
+.list li:last-child {
+    border-bottom: none!important;
+}
+
+@media screen and (min-width:600px) {
+
+    #shot_comment .comment {
+        background: #fff;
+        padding:16px 0;
+        width: 100%;
+        display: block;
+        border-bottom:solid 1px #f5f5f5;
+    }
+
+    #profil #profil_user .user_avatar {
+        position: relative;
+        z-index: 2;
+        width: 120px;
+        height: 120px;
+        border-radius: 120px;
+        margin: 60px auto 0;
+    }
+    #profil #profil_user .user_name {
+        position: relative;
+        z-index: 2;
+        display: block;
+        width: 100%;
+        font-size: 32px;
+        margin: 30px 0;
+        color: #fff;
+        text-shadow:0 0 10px rgba(0,0,0,.2);
+    }
+
+    #profil #profil_user .user_name .user_pro {
+        background: #ff7433;
+        padding:3px 8px 0px;
+        font-size: 24px;
+        border-radius: 8px;
+    }
+
+    #profil #profil_user .user_bio {
+        position: relative;
+        z-index: 2;
+        display: block;
+        width: 100%;
+        font-size: 16px;
+        color: #fff;
+        text-shadow:0 0 10px rgba(0,0,0,.2);
+        padding: 0 32px;
+        line-height: 1.6;
+        margin-bottom: 60px;
+    }
 }

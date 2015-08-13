@@ -16,27 +16,25 @@ angular.module('swishhhed',
     }
 
     if(window.StatusBar) {
-      StatusBar.show();
-      StatusBar.backgroundColorByName("red");
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
     }
 
   });
 })
-
 .run(function($localstorage) {
   
   var clientId = "76a0e0c037b02db657be0b487297c105c4a43d54b8f2bb024d966b08f1e8a2aa";
   var clientSecret = "6d7bcf11e0f46efda352419616c20e78d863deea9eb43e0bc230616bcc7e7e35";
-  var accessToken = 'f59e506fd880352413323c6b53cb72c91e2b2ec2c6fa7da64a5250e2484c891c';
+  //var accessToken = 'f59e506fd880352413323c6b53cb72c91e2b2ec2c6fa7da64a5250e2484c891c';
 
   $localstorage.set('clientId',clientId);
   $localstorage.set('clientSecret',clientSecret);
-  $localstorage.set('accessToken',accessToken);
+  //$localstorage.set('accessToken',accessToken);
 
-  console.log($localstorage.get('requestToken'));
-  console.log($localstorage.get('accessToken'));
+  // console.log($localstorage.get('requestToken'));
+  // console.log($localstorage.get('accessToken'));
 })
-
 .config(function($stateProvider, $urlRouterProvider, $locationProvider, $ionicConfigProvider) {
 
   // $locationProvider.html5Mode({
@@ -69,6 +67,7 @@ angular.module('swishhhed',
 
   .state('tab.home', {
     url: '/home',
+    cache: true,
     views: {
       "home" : {
         templateUrl: 'templates/home.html',
@@ -79,6 +78,7 @@ angular.module('swishhhed',
 
   .state('tab.shots', {
     url: '/shots',
+    cache: true,
     views: {
       "shots" : {
         templateUrl: 'templates/shots.html',
@@ -86,16 +86,40 @@ angular.module('swishhhed',
       }
     }
   })
+  // .state('shots', {
+  //   url: '/shots',
+  //   cache: true,
+  //   templateUrl: 'templates/shots.html',
+  //   controller: 'shotsController'
+  // })
 
-  .state('tab.shot', {
-    url: '/shot/:shotId',
+  .state('tab.shot-home', {
+    url: '/home/shot/:shotId',
+    cache: true,
     views: {
-      "shot" : {
-        templateUrl: 'templates/shot.html',
-        controller: 'shotController'
+      "home" : {
+        templateUrl: 'templates/shot-home.html',
+        controller: 'shotHomeController'
       }
     }
   })
+
+  .state('tab.shot-shots', {
+    url: '/shots/shot/:shotId',
+    cache: true,
+    views: {
+      "shots" : {
+        templateUrl: 'templates/shot-shots.html',
+        controller: 'shotShotsController'
+      }
+    }
+  })
+  // .state('shot', {
+  //   url: '/shot/:shotId',
+  //   cache: true,
+  //   templateUrl: 'templates/shot-shots.html',
+  //   controller: 'shotShotsController'
+  // })
 
   .state('tab.upload', {
     url: '/upload',
@@ -109,6 +133,7 @@ angular.module('swishhhed',
 
   .state('tab.profil', {
     url: '/profil',
+    cache: true,
     views: {
       "profil" : {
         templateUrl: 'templates/profil.html',
@@ -121,14 +146,12 @@ angular.module('swishhhed',
   $urlRouterProvider.otherwise('/intro');
 
 })
-
 .config(['$compileProvider',function( $compileProvider ){ 
 
   var oldWhiteList = $compileProvider.imgSrcSanitizationWhitelist();
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|blob|cdvfile):|data:image\//);
 
 }])
-
 .config(function($cordovaInAppBrowserProvider) {
 
   var options = {
@@ -140,7 +163,6 @@ angular.module('swishhhed',
   $cordovaInAppBrowserProvider.setDefaultOptions(options)
 
 })
-
 .filter("sanitize", ['$sce', function($sce) {
   return function(htmlCode){
     return $sce.trustAsHtml(htmlCode);

@@ -1,54 +1,48 @@
-<ion-view ng-controller="shotsController" title="shots">
+<ion-view title="shots" edge-drag-threshold="false" drag-content="false">
 
-  <ion-header-bar align-title="center" >
+  <ion-header-bar align-title="center" class="noborder">
 
     <h1 class="title">Shots</h1>
 
     <div class="buttons">
-      <a class="button button-icon ion-gear-a" ng-click="popover.show($event)"></a>
+      <a class="button button-icon ion-loop" ng-click="doReset()"></a>
     </div>
   </ion-header-bar>
+  <div class="bar bar-subheader">
+    <div class="button-bar">
 
-  <ion-content class="content_center">
-    <ion-refresher pulling-text="" on-refresh="doRefresh()"></ion-refresher>
+      <div class="select">
+          <select ng-model="sort" ng-change="updateSort()" ng-options="sort.name for sort in sorts">
+          </select>
+        </div>
 
-    <a href="#/tab/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots">
+        <div class="select">
+          <select ng-model="list" ng-change="updateList()" ng-options="list.name for list in lists">
+          </select>
+        </div>
 
+        <div class="select">
+          <select ng-model="time" ng-change="updateTime()" ng-options="time.name for time in times">
+          </select> 
+        </div>
+
+      </div>
+  </div>
+
+  <ion-content class="content_center has-subheader">
+    <!-- <ion-refresher pulling-text="" on-refresh="doRefresh()"></ion-refresher> -->
+
+    <a ng-href="#/tab/shots/shot/{{ shot.id }}" ng-repeat="shot in data track by $index" class="shots" >
       <img src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
-      
       <div class="shots_info">
         <span class="shots_view"><i class="ion-eye"></i>{{ shot.views_count }}</span><!--
-        --><span class="shots_comments"><i class="ion-chatbubble"></i>{{ shot.comments_count }}</span><!--
-        --><span class="shots_likes"><i class="ion-heart"></i>{{ shot.likes_count }}</span>
+       --><span class="shots_comments"><i class="ion-chatbubble"></i>{{ shot.comments_count }}</span><!--
+       --><span class="shots_likes"><i class="ion-heart"></i>{{ shot.likes_count }}</span>
       </div>
     </a>
 
-    <ion-infinite-scroll on-infinite="loadMore()" distance="0%"></ion-infinite-scroll>
+    <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
 
   </ion-content>
-
-  <script id="templates/popover.html" type="text/ng-template">
-    <ion-popover-view>
-      <ion-content>
-        
-      <div class="select">
-        <select ng-model="sort" ng-change="updateSort()" ng-options="sort.name for sort in sorts">
-        </select>
-        <i class="icon ion-ios-arrow-down"></i>
-      </div>
-      <div class="select">
-        <select ng-model="list" ng-change="updateList()" ng-options="list.name for list in lists">
-        </select>
-        <i class="icon ion-ios-arrow-down"></i>
-      </div>
-      <div class="select">
-        <select ng-model="time" ng-change="updateTime()" ng-options="time.name for time in times">
-        </select>
-        <i class="icon ion-ios-arrow-down"></i>
-      </div>
-    
-      </ion-content>
-    </ion-popover-view>
-  </script>
 
 </ion-view>

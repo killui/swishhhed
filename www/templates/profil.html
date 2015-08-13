@@ -1,39 +1,58 @@
-<ion-view ng-controller="profilController" title="profil">
+<ion-view title="profil" edge-drag-threshold="false" drag-content="false">
  
     <ion-header-bar align-title="center" >
-        <div class="buttons">
-            <a ng-click="back()" class="button btn_icon"><i class="icons icon_back"></i></a>
-        </div>
-        <h1 class="title">{{ name }}</h1>
+        <h1 class="title">Profil</h1>
     </ion-header-bar>
 
     <ion-content class="content_center">
 
         <div id="profil">
-            <img src="{{ avatar }}" alt="{{ name }}">
+            <div id="profil_user">
+                <img src="{{ user.avatar_url }}" alt="{{ user.name }}" class="bg">
+                <img src="{{ user.avatar_url }}" alt="{{ user.name }}" class="user_avatar">
+                <p class="user_name">{{ user.name }} <span class="user_pro" ng-if="user.pro == true">PRO</span></p>
+                <p class="user_bio" ng-bind-html="user.bio | sanitize">{{ user.bio }}</p>
+            </div>
+            
             <div id="profil_counts">
                 <div class="count">
                     <span>
-                        <strong>{{ followers }}</strong>
+                        <strong>{{ user.followers_count }}</strong>
                         <br>
                         <i class="icons icon_followers"></i> followers
                     </span>
                 </div>
                 <div class="count">
                     <span>
-                        <strong>{{ followings }}</strong>
+                        <strong>{{ user.followings_count }}</strong>
                         <br>
                         <i class="icons icon_followings"></i> followings
                     </span>
                 </div>
                 <div class="count">
                     <span>
-                        <strong>{{ likes }}</strong>
+                        <strong>{{ user.likes_count }}</strong>
                         <br>
                         <i class="icons icon_likes"></i> likes
                     </span>
                 </div>
             </div>
+
+            <ul class="list">
+                <li>{{ user.location }}</li>
+                <li><a ng-href="{{ user.links.web }}">{{ user.links.web }}</a></li>
+                <li><a ng-href="{{ user.links.twitter }}">{{ user.links.twitter }}</a></li>
+            </ul>
+
+            <ul class="list">
+                <li>Shots <span>{{ user.shots_count }}</span></li>
+                <li>Followers <span>{{ user.followers_count }}</span></li>
+                <li>Followings <span>{{ user.followings_count }}</span></li>
+                <li>Buckets <span>{{ user.buckets_count }}</span></li>
+                <li>Likes <span>{{ user.likes_count }}</span></li>
+                <li>Projects <span>{{ user.projects_count }}</span></li>
+                <li>Teams <span>{{ user.teams_count }}</span></li>
+            </ul>
         </div>
 
     </ion-content>

@@ -1,21 +1,21 @@
-<ion-view ng-controller="shotController" title="shot">
-
+<ion-view title="shot-home" >
     <ion-header-bar align-title="center" >
-        <div class="buttons">
-            <a ng-click="back()" class="button button-icon ion-chevron-left"></a>
-        </div>
-        <h1 class="title">{{ title }}</h1>
-    </ion-header-bar>
+        <a href="#/tab/home" class="button button-icon ion-chevron-left"> Back</a>
+        <!-- <h1 class="title">{{ title }}</h1> -->
+    </ion-header-bar>            
 
     <ion-content class="content_center">
-        <ion-refresher pulling-text="" on-refresh="doRefresh()">
-        </ion-refresher>
 
         <div id="shot">
 
             <div id="shot_user">
                 <img src="{{ userShot }}" alt="{{ comment.username }}">
-                <span>{{ userName }}</span>
+                <p>
+                    <span class="title">{{ title }}</span>
+                    <br>
+                    by <span class="username">{{ userName }}</span>
+                </p>
+                
             </div>
 
             <img src="{{ shotImages }}" alt="{{ title }}">
@@ -46,27 +46,27 @@
                     </span>
                 </div>
 
+            </div>
 
-                <div ng-if="description.length > 0" id="shot_description" ng-bind-html="description | sanitize">
-                    <!-- {{ description }} -->
-                </div>
-
+            <div ng-if="description.length > 0" id="shot_description" ng-bind-html="description | sanitize">
+                {{ description }}
             </div>
 
         </div>
 
-        <div id="shot_comment">
-            <div id="comment" ng-repeat="comment in comment">
+        <div ng-if="comment.length > 0" id="shot_comment">
+            <div class="comment" ng-repeat="comment in comment">
                 <div id="comment_user">
                     <img src="{{ comment.user.avatar_url }}" alt="{{ comment.username }}">
                     <span>{{ comment.user.name }}</span>
                 </div>
                 <p id="comment_description" ng-bind-html="comment.body | sanitize">{{ comment.body }}</p><!--
-                --><span id="comment_likes" ng-bind-html="comment.likes_count"><!-- {{ comment.likes_count }} --></span>
+               <span id="comment_likes" ng-bind-html="comment.likes_count"><!-- {{ comment.likes_count }}</span>-->
             </div>
         </div>
        
-        <!-- <span>{{ shot.title }}</span> -->
+        <!-- <span>{{ shot.title }}</span>-->
     </ion-content>
 
-</ion-view>
+</ion-view> 
+    
