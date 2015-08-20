@@ -1,22 +1,28 @@
-angular.module('swishhhed', 
+angular.module('Swishhhed', 
   [
-    'ionic', 
+    'ionic',
+    'ngCordova',
+    'ionic.service.core',
+    'ionic.service.analytics',
+    'ionic.service.push',
     'starter.controllers', 
     'ionic.utils', 
-    'ngSanitize',
-    'ngCordova'
+    'ngSanitize'
   ]
 )
-
-.run(function($ionicPlatform) {
+// RUN
+.run(function($ionicPlatform, $ionicAnalytics) {
   $ionicPlatform.ready(function() {
 
+    $ionicAnalytics.register();
+    
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
+      StatusBar.show();
       StatusBar.styleDefault();
     }
 
@@ -35,36 +41,34 @@ angular.module('swishhhed',
   // console.log($localstorage.get('requestToken'));
   // console.log($localstorage.get('accessToken'));
 })
+// CONFIG
+.config(['$ionicAppProvider', function($ionicAppProvider) {
+  // Identify app
+  $ionicAppProvider.identify({
+    // Your App ID
+    app_id: '175d464d',
+    // The public API key services will use for this app
+    api_key: '4f634a93bc81cdd48ffeb15b116b3916a03033843fd64fcf',
+    // Your GCM sender ID/project number (Uncomment if supporting Android)
+    gcm_id: '859528838227'
+    
+  });
+}])
 .config(function($stateProvider, $urlRouterProvider, $locationProvider, $ionicConfigProvider) {
-
-  // $locationProvider.html5Mode({
-  //   enabled: true,
-  //   requireBase: false
-  // });
-  
   $ionicConfigProvider.tabs.position('bottom');
-
-  $stateProvider
-  // setup an abstract state for the tabs directive
-
-  // .state('login', {
-  //   url: '/login',
-  //   templateUrl: 'templates/login.html',
-  //   controller: 'loginController'
-  // })
   
+  $stateProvider
   .state('intro', {
     url: '/intro',
     templateUrl: 'templates/intro.html',
     controller: 'introController'
   })
-
   .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabbar.html"
   })
-
+  // HOME
   .state('tab.home', {
     url: '/home',
     cache: true,
@@ -75,7 +79,7 @@ angular.module('swishhhed',
       }
     }
   })
-
+  // SHOTS
   .state('tab.shots', {
     url: '/shots',
     cache: true,
@@ -86,41 +90,14 @@ angular.module('swishhhed',
       }
     }
   })
-  // .state('shots', {
-  //   url: '/shots',
-  //   cache: true,
-  //   templateUrl: 'templates/shots.html',
-  //   controller: 'shotsController'
-  // })
-
-  .state('tab.shot-home', {
-    url: '/home/shot/:shotId',
+  // SHOT
+  .state('shot', {
+    url: '/shot/:shotId',
     cache: true,
-    views: {
-      "home" : {
-        templateUrl: 'templates/shot-home.html',
-        controller: 'shotHomeController'
-      }
-    }
+    templateUrl: 'templates/shot.html',
+    controller: 'shotController'  
   })
-
-  .state('tab.shot-shots', {
-    url: '/shots/shot/:shotId',
-    cache: true,
-    views: {
-      "shots" : {
-        templateUrl: 'templates/shot-shots.html',
-        controller: 'shotShotsController'
-      }
-    }
-  })
-  // .state('shot', {
-  //   url: '/shot/:shotId',
-  //   cache: true,
-  //   templateUrl: 'templates/shot-shots.html',
-  //   controller: 'shotShotsController'
-  // })
-
+  // UPLOAD
   .state('tab.upload', {
     url: '/upload',
     views: {
@@ -130,7 +107,7 @@ angular.module('swishhhed',
       }
     }
   })
-
+  // PROFIL
   .state('tab.profil', {
     url: '/profil',
     cache: true,
@@ -141,28 +118,91 @@ angular.module('swishhhed',
       }
     }
   })
-  ;
-
-  $urlRouterProvider.otherwise('/intro');
-
+  .state('tab.user-shots', {
+    url: '/profil/shots',
+    cache: true,
+    views: {
+      "profil" : {
+        templateUrl: 'templates/profil/shots.html',
+        controller: 'profilShotsController'
+      }
+    }
+  })
+  .state('tab.user-followers', {
+    url: '/profil/followers',
+    cache: true,
+    views: {
+      "profil" : {
+        templateUrl: 'templates/profil/followers.html',
+        controller: 'profilFollowersController'
+      }
+    }
+  })
+  .state('tab.user-followings', {
+    url: '/profil/followings',
+    cache: true,
+    views: {
+      "profil" : {
+        templateUrl: 'templates/profil/followings.html',
+        controller: 'profilFollowingsController'
+      }
+    }
+  })
+  .state('tab.user-buckets', {
+    url: '/profil/buckets',
+    cache: true,
+    views: {
+      "profil" : {
+        templateUrl: 'templates/profil/buckets.html',
+        controller: 'profilBucketsController'
+      }
+    }
+  })
+  .state('tab.user-likes', {
+    url: '/profil/likes',
+    cache: true,
+    views: {
+      "profil" : {
+        templateUrl: 'templates/profil/likes.html',
+        controller: 'profilLikesController'
+      }
+    }
+  })
+  .state('tab.user-projects', {
+    url: '/profil/projects',
+    cache: true,
+    views: {
+      "profil" : {
+        templateUrl: 'templates/profil/projects.html',
+        controller: 'profilProjectsController'
+      }
+    }
+  })
+  .state('tab.user-teams', {
+    url: '/profil/teams',
+    cache: true,
+    views: {
+      "profil" : {
+        templateUrl: 'templates/profil/teams.html',
+        controller: 'profilTeamsController'
+      }
+    }
+  });
+  $urlRouterProvider.otherwise('/tab/shots');
 })
 .config(['$compileProvider',function( $compileProvider ){ 
-
   var oldWhiteList = $compileProvider.imgSrcSanitizationWhitelist();
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|blob|cdvfile):|data:image\//);
-
 }])
 .config(function($cordovaInAppBrowserProvider) {
-
   var options = {
     location: 'no',
     clearcache: 'no',
     toolbar: 'no'
   };
-
   $cordovaInAppBrowserProvider.setDefaultOptions(options)
-
 })
+// FILTER
 .filter("sanitize", ['$sce', function($sce) {
   return function(htmlCode){
     return $sce.trustAsHtml(htmlCode);

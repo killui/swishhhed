@@ -1,48 +1,40 @@
 <ion-view title="shots" edge-drag-threshold="false" drag-content="false">
-
   <ion-header-bar align-title="center" class="noborder">
-
     <h1 class="title">Shots</h1>
-
     <div class="buttons">
-      <a class="button button-icon ion-loop" ng-click="doReset()"></a>
+      <a class="button button-icon lnr lnr-sync" ng-click="doReset()"></a>
     </div>
   </ion-header-bar>
   <div class="bar bar-subheader">
     <div class="button-bar">
-
       <div class="select">
           <select ng-model="sort" ng-change="updateSort()" ng-options="sort.name for sort in sorts">
           </select>
         </div>
-
         <div class="select">
           <select ng-model="list" ng-change="updateList()" ng-options="list.name for list in lists">
           </select>
         </div>
-
         <div class="select">
           <select ng-model="time" ng-change="updateTime()" ng-options="time.name for time in times">
           </select> 
         </div>
-
       </div>
   </div>
-
   <ion-content class="content_center has-subheader">
-    <!-- <ion-refresher pulling-text="" on-refresh="doRefresh()"></ion-refresher> -->
-
-    <a ng-href="#/tab/shots/shot/{{ shot.id }}" ng-repeat="shot in data track by $index" class="shots" >
-      <img src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
-      <div class="shots_info">
-        <span class="shots_view"><i class="ion-eye"></i>{{ shot.views_count }}</span><!--
-       --><span class="shots_comments"><i class="ion-chatbubble"></i>{{ shot.comments_count }}</span><!--
-       --><span class="shots_likes"><i class="ion-heart"></i>{{ shot.likes_count }}</span>
-      </div>
-    </a>
-
-    <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
-
+    <!-- <ion-refresher pulling-text="Pull to refresh..." on-refresh="doReset()"></ion-refresher> -->
+    <div id="shots">
+      <a ng-href="#/shot/{{ shot.id }}"  nav-direction="forward" ng-repeat="shot in data track by $index" class="shots" >
+        <span ng-if="shot.attachments_count > 0" class="attachment"><i class="lnr lnr-paperclip"></i></span>
+        <!-- <span ng-if="shot.rebounds_count > 0" class="rebound"><i class="ion-forward"></i></span> -->
+        <img preload-src="img/preload_shot.jpg" ng-src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
+        <div class="shots_info">
+          <span class="shots_view"><strong>{{ shot.views_count }}</strong>views</span><!--
+         --><span class="shots_comments"><strong>{{ shot.comments_count }}</strong>comments</span><!--
+         --><span class="shots_likes"><strong>{{ shot.likes_count }}</strong>likes</span>
+        </div>
+      </a>
+      <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    </div>
   </ion-content>
-
 </ion-view>

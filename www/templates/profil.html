@@ -6,7 +6,13 @@
 
     <ion-content class="content_center">
 
-        <div id="profil">
+        <p ng-if="login == false" id="notLogged">
+            You need to connect to see your profil
+
+            <a class="button button-positive">Log in</a>
+        </p>
+
+        <div id="profil" ng-if="login == true">
             <div id="profil_user">
                 <img src="{{ user.avatar_url }}" alt="{{ user.name }}" class="bg">
                 <img src="{{ user.avatar_url }}" alt="{{ user.name }}" class="user_avatar">
@@ -45,13 +51,13 @@
             </ul>
 
             <ul class="list">
-                <li>Shots <span>{{ user.shots_count }}</span></li>
-                <li>Followers <span>{{ user.followers_count }}</span></li>
-                <li>Followings <span>{{ user.followings_count }}</span></li>
-                <li>Buckets <span>{{ user.buckets_count }}</span></li>
-                <li>Likes <span>{{ user.likes_count }}</span></li>
-                <li>Projects <span>{{ user.projects_count }}</span></li>
-                <li>Teams <span>{{ user.teams_count }}</span></li>
+                <a ng-href="#/tab/profil/shots" class="link_app"><li>Shots <span>{{ user.shots_count }} <i class="ion-chevron-right"></i></span></li></a>
+                <a ng-href="#/tab/profil/followers" class="link_app"><li>Followers <span>{{ user.followers_count }} <i class="ion-chevron-right"></i></span></li></a>
+                <a ng-href="#/tab/profil/followings" class="link_app"><li>Followings <span>{{ user.followings_count }} <i class="ion-chevron-right"></i></span></li></a>
+                <a ng-href="#/tab/profil/buckets" class="link_app"><li>Buckets <span>{{ user.buckets_count }} <i class="ion-chevron-right"></i></span></li></a>
+                <a ng-href="#/tab/profil/likes" class="link_app"><li>Likes <span>{{ user.likes_count }} <i class="ion-chevron-right"></i></span></li></a>
+                <a ng-href="#/tab/profil/projects" class="link_app"><li>Projects <span>{{ user.projects_count }} <i class="ion-chevron-right"></i></span></li></a>
+                <a ng-href="#/tab/profil/teams" class="link_app"><li>Teams <span>{{ user.teams_count }} <i class="ion-chevron-right"></i></span></li></a>
             </ul>
         </div>
 

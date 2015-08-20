@@ -1,31 +1,26 @@
 <ion-view title="home">
-
   <ion-header-bar align-title="center" >
-
     <h1 class="title">Following</h1>
     <div class="buttons">
-      <a class="button button-icon ion-loop" ng-click="reset()"></a>
+      <a class="button button-icon lnr lnr-sync" ng-click="doReset()"></a>
     </div>
   </ion-header-bar>
-
   <ion-content class="content_center">
-
-  	<ion-refresher pulling-text="" on-refresh="doRefresh()"></ion-refresher>
-
-    <a ng-href="#/tab/home/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots" >
-
-
-      <img src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
-      
-      <div class="shots_info">
-        <span class="shots_view"><i class="ion-eye"></i>{{ shot.views_count }}</span><!--
-        --><span class="shots_comments"><i class="ion-chatbubble"></i>{{ shot.comments_count }}</span><!--
-        --><span class="shots_likes"><i class="ion-heart"></i>{{ shot.likes_count }}</span>
-      </div>
-    </a>
-
-    <ion-infinite-scroll on-infinite="loadMore()" distance="0%"></ion-infinite-scroll>
-
+    <!-- <ion-refresher pulling-text="Pull to refresh..." on-refresh="doReset()"></ion-refresher> -->
+    <p ng-if="login == false" id="notLogged">
+      You need to connect to see the shots from your followings
+      <a class="button button-positive">Log in</a>
+    </p>
+    <div id="shots" ng-if="login == true">
+      <a ng-href="#/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots" >
+        <img preload-src="img/preload_shot.jpg" ng-src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
+        <div class="shots_info">
+          <span class="shots_view"><strong>{{ shot.views_count }}</strong>views</span><!--
+         --><span class="shots_comments"><strong>{{ shot.comments_count }}</strong>comments</span><!--
+         --><span class="shots_likes"><strong>{{ shot.likes_count }}</strong>likes</span>
+        </div>
+      </a>
+      <ion-infinite-scroll on-infinite="loadMore()" distance="0%"></ion-infinite-scroll>
+    </div>
   </ion-content>
-
 </ion-view>

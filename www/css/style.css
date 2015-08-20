@@ -10,6 +10,74 @@ orange: #ff7433;
 
 **/
 
+/* Icons */
+
+.cover-left-right > .ng-enter, .cover-left-right.ng-enter, .cover-left-right > .ng-leave, .cover-left-right.ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  -moz-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+}
+ 
+ 
+.cover-left-right > .ng-enter, .cover-left-right.ng-enter {
+  /* NEW content placed far RIGHT BEFORE it slides IN from the RIGHT */
+  -webkit-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+.cover-left-right > .ng-enter.ng-enter-active, .cover-left-right.ng-enter.ng-enter-active {
+  /* NEW content ACTIVELY sliding IN from the RIGHT */
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);  
+ 
+}
+.cover-left-right > .ng-leave.ng-leave-active, .cover-left-right.ng-leave.ng-leave-active{
+  /* OLD content ACTIVELY sliding OUT to the LEFT */ 
+ -webkit-transform: scale(0.97,0.96);
+  -moz-transform: scale(0.97,0.96);
+  transform: scale(0.97,0.96);
+}
+
+.cover-left-right.reverse > .ng-enter, .cover-left-right.reverse.ng-enter, .cover-left-right.reverse > .ng-leave, .cover-left-right.reverse.ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  -moz-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+} 
+ 
+.cover-left-right.reverse > .ng-enter, .cover-left-right.reverse.ng-enter {  
+ -webkit-transform: scale(0.97,0.96);
+  -moz-transform: scale(0.97,0.96);
+  transform: scale(0.97,0.96); 
+    z-index: 1;
+}
+
+.cover-left-right.reverse > .ng-enter.ng-enter-active, .cover-left-right.reverse.ng-enter.ng-enter-active {
+ -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  transform: scale(1);
+} 
+
+.cover-left-right.reverse > .ng-leave, .cover-left-right.reverse.ng-leave { 
+    z-index: 3; 
+}
+
+.cover-left-right.reverse > .ng-leave.ng-leave-active, .cover-left-right.reverse.ng-leave.ng-leave-active { 
+ -webkit-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0); 
+} 
+
 /**/
 h1 {
     color: #e6175c;
@@ -51,8 +119,17 @@ a {
     border-radius: 0 2px 2px 0;
     border-right: solid 1px #e6175c;
 }
+
+body {
+    border-radius: 4px;
+}
+.view-container {
+    border-radius:4px; 
+}
+
 .pane {
     background: #e6e6e6;
+    border-radius:4px; 
 }
 
 .content_center {
@@ -68,15 +145,16 @@ a {
     border-bottom-color: transparent !important;
     background-image: none;
     border-bottom: none;
-    background: #ffffff;
+    background: rgba(255,255,255,0.94);
     border-bottom: none!important;
-    box-shadow: 0 0px 2px rgba(0,0,0,.1);
+    /*box-shadow: 0 1px 1px rgba(0,0,0,.05);*/
 }
 .bar-header.noborder {
     border: 0px !important;
     border-bottom-color: transparent !important;
     background-image: none;
     border-bottom: none;
+    background: #ffffff;
     border-bottom: none!important;
 }
 
@@ -87,18 +165,33 @@ a {
     border-bottom: none;
     padding: 0 16px;
     border-bottom: none!important;
-    box-shadow: 0 0px 2px rgba(0,0,0,.1);
+    /*box-shadow: 0 1px 1px rgba(0,0,0,.05);*/
 }
 
 .tabs {
-    border-top: 1px solid #ddd;
-    border-color: none!important;
-    background: #ffffff;
-    box-shadow: 0 0px 2px rgba(0,0,0,.1);
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    background-image: none;
+    border-bottom: none;
+    background: #fff;
+    border-bottom: none!important;
+    /*box-shadow: 0 -1px 1px rgba(0,0,0,.05);*/
 }
 
+.tab-item {
+    color: #9ba5a8;
+}
+
+.tab-item .icon {
+    font-size: 20px;
+}
 .tab-item-active {
     color: #e6175c;
+}
+.tabs-striped .tab-item.activated, 
+.tabs-striped .tab-item.active, 
+.tabs-striped .tab-item.tab-item-active {
+    border-color: #fff;
 }
 
 .button-bar {
@@ -107,8 +200,12 @@ a {
 
 .button {
     font-size: 10px;
-    color: #e6175c;
+    color: #9ba5a8;
     text-align: center;
+}
+
+.button-icon:before {
+    font-size: 20px!important;
 }
 
 .button-bar .select {
@@ -125,6 +222,7 @@ a {
 .bar .button.button-icon:before {
     font-size: 24px;
 }
+
 
 /* Slider Intro */
 
@@ -149,6 +247,30 @@ a {
     font-size: 8px;
 }
 
+#notLogged {
+    color:#9ba5a8;
+    font-size: 16px;
+    padding: 120px 16px;
+    line-height: 1.4;
+}
+#notLogged a {
+    display: block;
+    width: 160px;
+    margin: 30px auto;
+    font-size: 14px;
+    min-height: inherit!important;
+    line-height: inherit!important;
+    padding: 10px 12px 6px;
+    border-radius: 100px;
+    background: #639FE6!important;
+    border-color: #639FE6!important;
+    opacity: 1;
+}
+#notLogged a:hover {
+    background: #0F66A8!important;
+    border-color: #0F66A8!important;
+}
+
 /* shots */
 .shots {
     box-sizing:border-box;
@@ -161,6 +283,30 @@ a {
     width: 163.5px;
     min-height: 150px;
     border-radius: 4px;
+    position: relative;
+}
+.shots .attachment {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-size: 14px;
+    background: #9ba5a8;
+    padding: 3px 2px 0 3px;
+    border-radius: 20px;
+    height: 27px;
+    border: solid 4px #fff;
+}
+.shots .rebound {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #fff;
+    font-size: 16px;
+    background: #28b453;
+    padding: 1px 4px 0px;
+    height: 20px;
+    border-radius: 20px;
 }
 .shots img {
     display: block;
@@ -175,8 +321,14 @@ a {
     display: inline-block;
     vertical-align: top;
     color: #9ba5a8;
-    font-size: 14px;
+    font-size: 9px;
     width: calc(100% / 3);
+    text-align: center;
+    line-height: 1;
+}
+.shots .shots_info span strong {
+    font-size: 12px;
+    display: block;
 }
 
 .shots .shots_info span.shots_view {
@@ -195,21 +347,30 @@ a {
     display: inline-block;
 }
 /* Shot */
+.scroll {
+    height: 100%;
+}
+.backdrop-loading {
+    background: none;
+}
+.loading-container .loading {
+    padding: 26px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
+.loader {
+  text-align: center;
+  padding: 0;
+  margin: 0 auto;
+  display: block;
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+}
 
-.action_like {
-    position: absolute;
-    top: 5px;
-    right: 88px!important;
-}
-.action_comment {
-    position: absolute;
-    top: 5px;
-    right: 44px!important;
-}
-.action_share {
-    position: absolute;
-    top: 5px;
-    right: 0px!important;
+.loader svg path,
+.loader svg rect {
+    fill:#e6175c;
 }
 
 #shot {
@@ -254,22 +415,40 @@ a {
     color: #639FE6;
 }
 
+#shot_attachments {
+    text-align: left;
+    padding: 16px 0;
+    border-top:solid 1px #f5f5f5;
+    width: calc(100% - 32px);
+    margin: 0 auto; 
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+#shot_attachments .thumb {
+    width: 80px;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 12px;
+}
+
 #shot #shot_counts {
     display: block;
     width: 100%;
     text-align: center;
-    padding: 0;
+    padding:16px;
     background: #E5E5E5;
 }
 
 #shot #shot_counts .count {
     display: inline-block;
-    width: 30%;
+    width: calc(100% / 3);
     text-align: center;
     vertical-align: top;
     color: #9ba5a8;
     font-size: 16px;
-    margin: 16px 0 10px;
+    margin: 0;
 }
 
 #shot #shot_counts .count span{
@@ -293,7 +472,7 @@ a {
 #shot #shot_description {
     background: #E5E5E5;
     display: block;
-    text-align: left;
+    text-align: justify;
     width:100%;
     margin:0;
     padding:0;
@@ -301,15 +480,15 @@ a {
 }
 
 #shot #shot_description p {
-    margin: 0 auto 6px;
+    margin: 0 auto;
     width: calc(100% - 32px);
 }
 #shot #shot_description p:first-child {
     border-top:solid 1px #ccc;
-    padding: 32px 0 0;
+    padding: 16px 0 0;
 }
 #shot #shot_description p:last-child {
-    padding: 0 0 32px;
+    padding: 0 0 16px;
     margin: 0 auto;
 }
 #shot #shot_description p:only-child {
@@ -322,13 +501,16 @@ a {
     display: block;
     width: 100%;
     padding: 0 0 0 16px;
-    border-top: solid 1px #ddd; 
+    /*border-top: solid 1px #ddd; */
 }
 #shot_comment .comment {
-    padding:16px 0;
+    padding:8px 0;
     width: 100%;
     display: block;
     border-bottom:solid 1px #f5f5f5;
+}
+#shot_comment .comment p {
+    margin: 0;
 }
 #shot_comment .comment:last-child {
     border-bottom: none!important;
@@ -360,13 +542,14 @@ a {
     box-sizing:border-box;
     width: 100%;
     display: inline-block;
-    text-align: left;
+    text-align: justify;
     vertical-align: middle;
     color: #9ba5a8;
     padding:0 0 0 52px;
 }
 #shot_comment .comment #comment_description p {
     margin: 0;
+    padding-right: 16px;
 }
 #shot_comment .comment #comment_likes {
     box-sizing:border-box;
@@ -378,7 +561,80 @@ a {
     padding: 2% 0 0;
 }
 
+ 
+.image-modal {
+    width: 100% !important;
+    height: 100%;
+    top: 0 !important;
+    left: 0 !important;
+}
 
+.image-modal .close_modal {
+    color: #fff;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    opacity: .6;
+    z-index: 10;
+    font-size: 24px;
+}
+
+.image-modal .slider-slide {
+    background: none;
+    padding: 0;
+    z-index: 1;
+}
+
+.image-modal .slider-slide #center {
+    position: relative;
+    display: block;
+    top: 50%;
+    margin-top: -1000px;
+    height: 2000px;
+    text-align: center;
+    line-height: 2000px;
+    z-index: 1;
+    overflow: scroll;
+}    
+
+.image-modal .slider-slide #center #wrap {
+    line-height: 0;
+}
+
+.image-modal .slider-slide #center #wrap img {
+    width: 100%;
+    vertical-align: middle;
+} 
+
+.transparent {
+  background: rgba(0,0,0,0.9);
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+}
+.fade {list-style: none;}
+
+.fade.ng-enter,
+.fade.ng-leave,
+.fade.ng-move { 
+    -webkit-transition:0.4s linear all; 
+    transition: 0.4s linear all; 
+    opacity:0;
+}
+
+.fade.ng-leave.ng-leave-active,
+.fade.ng-move,
+.fade.ng-enter {
+    opacity: 0;
+}
+
+.fade.ng-leave,
+.fade.ng-move.ng-move-active,
+.fade.ng-enter.ng-enter-active {
+    opacity: 1;
+}
 /* Menu Shot */
 
 .view {
@@ -520,28 +776,84 @@ a {
     border-bottom:solid 1px #ddd;
     margin: 30px 0;
 }
-
 .list li {
+    padding: 14px 0 10px;
+    border-bottom:solid 1px #f5f5f5;
+    text-align: left;
+    width: calc(100% -15px);
+    margin-left: 15px;
+}
+.list li:last-child {
+    border-bottom: none!important;
+}
+.list li a {
+    padding: 0;
+    border-bottom:none!important;
+    padding: 0;
+    width: 100%;
+    margin-left: 0;
+}
+.list a:last-child {
+    border-bottom: none!important;
+}
+.list a {
+    display: block;
+    padding: 14px 0 10px;
+    border-bottom:solid 1px #f5f5f5;
+    text-align: left;
+    width: calc(100% -15px);
+    margin-left: 15px;
+}
+
+.list a li {
     position: relative;
     text-align: left;
     font-size: 14px;
     color: #333333;
-    padding: 14px 0 10px;
-    width: calc(100% -15px);
-    margin-left: 15px;
-    border-bottom: solid 1px #f5f5f5;
+    padding: 0;
+    width: 100%;
+    margin-left: 0;
 }
 
-.list li span {
+.list a li span {
     position: absolute;
-    right: 60px;
+    right: 15px;
     color: #9ba5a8;
 }
+.list a li span i {
+    margin-left: 15px;
+}
 
-.list li:last-child {
+.list a li:last-child {
     border-bottom: none!important;
 }
 
+/* Followers */
+.user {
+    display: block;
+    padding: 16px;
+    font-size: 16px;
+    text-align: left;
+    border-bottom:solid 1px #ddd;
+}
+.user:last-child {
+    border-bottom:none;
+}
+.user img {
+    width: 60px;
+    border-radius: 60px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.user span {
+    display: inline-block;
+    width: calc(100% - 90px);
+    vertical-align: middle;
+    margin-left: 16px;
+}
+
+/* Queries */
 @media screen and (min-width:600px) {
 
     #shot_comment .comment {
