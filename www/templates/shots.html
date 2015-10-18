@@ -7,34 +7,24 @@
   </ion-header-bar>
   <div class="bar bar-subheader">
     <div class="button-bar">
-      <div class="select">
-          <select ng-model="sort" ng-change="updateSort()" ng-options="sort.name for sort in sorts">
-          </select>
-        </div>
-        <div class="select">
-          <select ng-model="list" ng-change="updateList()" ng-options="list.name for list in lists">
-          </select>
-        </div>
-        <div class="select">
-          <select ng-model="time" ng-change="updateTime()" ng-options="time.name for time in times">
-          </select> 
-        </div>
-      </div>
+      <a ng-click="changeShots('popular')" class="button selected" id="popular">Popular</a>
+      <a ng-click="changeShots('recent')" class="button" id="recent">Recent</a>
+    </div>
   </div>
-  <ion-content class="content_center has-subheader">
+  <ion-content class="content_center has-subheader" has-bouncing="true">
     <!-- <ion-refresher pulling-text="Pull to refresh..." on-refresh="doReset()"></ion-refresher> -->
     <div id="shots">
-      <a ng-href="#/shot/{{ shot.id }}"  nav-direction="forward" ng-repeat="shot in data track by $index" class="shots" >
-        <span ng-if="shot.attachments_count > 0" class="attachment"><i class="lnr lnr-paperclip"></i></span>
+      <a ng-href="#/tab/shots/{{ shot.id }}"  nav-direction="forward" ng-repeat="shot in data track by $index" class="shots" >
+        <!-- <span ng-if="shot.attachments_count > 0" class="attachment"><i class="lnr lnr-paperclip"></i></span> -->
         <!-- <span ng-if="shot.rebounds_count > 0" class="rebound"><i class="ion-forward"></i></span> -->
-        <img preload-src="img/preload_shot.jpg" ng-src="{{ shot.images.teaser }}" alt="{{ shot.title }}">
+        <img preload-src="img/preload_shot.jpg" ng-src="{{ shot.images.normal }}" alt="{{ shot.title }}">
         <div class="shots_info">
           <span class="shots_view"><strong>{{ shot.views_count }}</strong>views</span><!--
          --><span class="shots_comments"><strong>{{ shot.comments_count }}</strong>comments</span><!--
          --><span class="shots_likes"><strong>{{ shot.likes_count }}</strong>likes</span>
         </div>
       </a>
-      <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+      <ion-infinite-scroll on-infinite="loadMore()" distance="1%" icon="crescent"></ion-infinite-scroll>
     </div>
   </ion-content>
 </ion-view>

@@ -1,17 +1,12 @@
 <ion-view title="profil" edge-drag-threshold="false" drag-content="false">
- 
     <ion-header-bar align-title="center" >
         <h1 class="title">Profil</h1>
     </ion-header-bar>
-
     <ion-content class="content_center">
-
         <p ng-if="login == false" id="notLogged">
             You need to connect to see your profil
-
-            <a class="button button-positive">Log in</a>
+            <a ng-href="#/login" class="button button-positive">Log in</a>
         </p>
-
         <div id="profil" ng-if="login == true">
             <div id="profil_user">
                 <img src="{{ user.avatar_url }}" alt="{{ user.name }}" class="bg">
@@ -60,7 +55,5 @@
                 <a ng-href="#/tab/profil/teams" class="link_app"><li>Teams <span>{{ user.teams_count }} <i class="ion-chevron-right"></i></span></li></a>
             </ul>
         </div>
-
     </ion-content>
-
 </ion-view>

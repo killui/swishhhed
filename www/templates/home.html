@@ -9,7 +9,7 @@
     <!-- <ion-refresher pulling-text="Pull to refresh..." on-refresh="doReset()"></ion-refresher> -->
     <p ng-if="login == false" id="notLogged">
       You need to connect to see the shots from your followings
-      <a class="button button-positive">Log in</a>
+      <a ng-click="doLogin()" class="button button-positive">Log in</a>
     </p>
     <div id="shots" ng-if="login == true">
       <a ng-href="#/shot/{{ shot.id }}" ng-repeat="shot in data" class="shots" >

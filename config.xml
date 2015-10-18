@@ -17,12 +17,12 @@
   <content src="index.html"/>
   <access origin="http://127.0.0.1*"/>
   <access origin="*"/>
-  <preference name="webviewbounce" value="false"/>
-  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="webviewbounce" value="true"/>
+  <preference name="UIWebViewBounce" value="true"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="StatusBarOverlaysWebView" value="true"/>
-  <preference name="StatusBarStyle" value="lightcontent"/>
+  <preference name="StatusBarStyle" value="default"/>
   <preference name="StatusBarBackgroundColor" value="#ffffff"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="2000"/>

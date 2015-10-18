@@ -2,12 +2,13 @@ angular.module('Swishhhed',
   [
     'ionic',
     'ngCordova',
+    'ngCordovaOauth',
+    'ngSanitize',
     'ionic.service.core',
     'ionic.service.analytics',
     'ionic.service.push',
     'starter.controllers', 
-    'ionic.utils', 
-    'ngSanitize'
+    'ionic.utils'
   ]
 )
 // RUN
@@ -63,6 +64,17 @@ angular.module('Swishhhed',
     templateUrl: 'templates/intro.html',
     controller: 'introController'
   })
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginController'
+  })
+  //oauth-callback
+  .state('oauth-callback', {
+    url: '/callback',
+    templateUrl: 'templates/oauth-callback.html',
+    controller: 'oauthController'
+  })
   .state('tab', {
     url: "/tab",
     abstract: true,
@@ -91,11 +103,15 @@ angular.module('Swishhhed',
     }
   })
   // SHOT
-  .state('shot', {
-    url: '/shot/:shotId',
+  .state('tab.shot', {
+    url: '/shots/:shotId',
     cache: true,
-    templateUrl: 'templates/shot.html',
-    controller: 'shotController'  
+    views: {
+      "shots" : {
+        templateUrl: 'templates/shot.html',
+        controller: 'shotController'  
+      }
+    }
   })
   // UPLOAD
   .state('tab.upload', {
