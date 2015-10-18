@@ -120,7 +120,7 @@ angular.module('starter.controllers', [])
     var PAGE = 1;
     var i = 0;
     $scope.data = [];
-
+    console.log($localstorage.get('accessToken'));
     if ($localstorage.get('accessToken') == null) {
         $scope.login = false;
         console.log($localstorage.get('accessToken'));
@@ -185,31 +185,33 @@ angular.module('starter.controllers', [])
         getFollowings(); 
     }
 
+    // https://blog.nraboy.com/2014/07/using-oauth-2-0-service-ionicframework
+    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
     $scope.doLogin = function() {
         var clientId = "76a0e0c037b02db657be0b487297c105c4a43d54b8f2bb024d966b08f1e8a2aa";
         var clientSecret = "6d7bcf11e0f46efda352419616c20e78d863deea9eb43e0bc230616bcc7e7e35";
         var appScopes = 'public+write+comment+upload';
         var redirectUrl = "http://localhost/callback";
 
-        var ref = window.open('https://dribbble.com/oauth/authorize?client_id='+clientId+'&scope='+appScopes+'', '_blank', 'location=no');
+        var ref = window.open('https://dribbble.com/oauth/authorize?client_id='+clientId+'&scope='+appScopes, '_blank', 'location=yes');
 
         ref.addEventListener('loadstart', function(event) {
+            console.log(event);
           if((event.url).startsWith("http://localhost/callback")) {
             code = (event.url).split("code=")[1];
-            $http({
-              method: 'POST',
-              url: 'https://dribbble.com/oauth/token',
-              params: {
+            console.log(code);
+            var parameters ={ params: {
                 client_id: clientId,
                 client_secret: clientSecret,
                 code: code
-              }
-            }).success(function(data) {
-                console.log(data);
-              $localStorage.set("accessToken", data.access_token);
-              $location.path('/tab/profil');
-            }).error(function(err) {
-              console.log(err);
+            }};
+            $http.post('https://dribbble.com/oauth/token',parameters)
+            .success(function(data) {
+                $localStorage.set("accessToken", data.access_token);
+                $location.path('/profil');
+            }).error(function(data, status, err) {
+              console.log(data+' - '+status+' - '+err);
             });
             ref.close();
           }
