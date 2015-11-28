@@ -120,10 +120,9 @@ angular.module('starter.controllers', [])
     var PAGE = 1;
     var i = 0;
     $scope.data = [];
-    console.log($localstorage.get('accessToken'));
+    
     if ($localstorage.get('accessToken') == null) {
         $scope.login = false;
-        console.log($localstorage.get('accessToken'));
     } else {
         $scope.login = true;
         console.log($localstorage.get('accessToken'));
@@ -192,29 +191,38 @@ angular.module('starter.controllers', [])
         var clientId = "76a0e0c037b02db657be0b487297c105c4a43d54b8f2bb024d966b08f1e8a2aa";
         var clientSecret = "6d7bcf11e0f46efda352419616c20e78d863deea9eb43e0bc230616bcc7e7e35";
         var appScopes = 'public+write+comment+upload';
-        var redirectUrl = "http://localhost/callback";
+        var redirectUrl = "swishhhed://home";
 
-        var ref = window.open('https://dribbble.com/oauth/authorize?client_id='+clientId+'&scope='+appScopes, '_blank', 'location=yes');
+        //var ref = window.open('https://dribbble.com/oauth/authorize?client_id='+clientId+'&scope='+appScopes, '_blank', 'location=yes');
+        var ref = window.open('https://dribbble.com/oauth/authorize?client_id='+clientId, '_blank', 'location=yes');
 
         ref.addEventListener('loadstart', function(event) {
-            console.log(event);
-          if((event.url).startsWith("http://localhost/callback")) {
-            code = (event.url).split("code=")[1];
-            console.log(code);
-            var parameters ={ params: {
-                client_id: clientId,
-                client_secret: clientSecret,
-                code: code
-            }};
-            $http.post('https://dribbble.com/oauth/token',parameters)
-            .success(function(data) {
-                $localStorage.set("accessToken", data.access_token);
-                $location.path('/profil');
-            }).error(function(data, status, err) {
-              console.log(data+' - '+status+' - '+err);
-            });
-            ref.close();
-          }
+            if((event.url).startsWith("http://localhost/callback")) {
+                var code = (event.url).split("code=")[1];
+                alert(code);
+                $localStorage.set("accessToken", code);
+                $http({
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    method: 'POST',
+                    url: 'https://dribbble.com/oauth/token',
+                    params: {
+                        client_id: "76a0e0c037b02db657be0b487297c105c4a43d54b8f2bb024d966b08f1e8a2aa",
+                        client_secret: "6d7bcf11e0f46efda352419616c20e78d863deea9eb43e0bc230616bcc7e7e35",
+                        code: code
+                    }
+                })
+                .success(function(data) {
+                    //$localStorage.set("accessToken", data.access_token);
+                    $location.path("/profil");
+                }).error(function(data, status, err) {
+                  console.log(data+' - '+status+' - '+err);
+                  alert(err);
+                });
+                alert('test2');
+                ref.close();
+            }
         });
 
         if (typeof String.prototype.startsWith != 'function') {

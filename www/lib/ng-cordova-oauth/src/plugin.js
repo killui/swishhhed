@@ -49,9 +49,6 @@
  *    Rally
  *    Family Search
  *    Envato
- *    Slack
- *    Jawbone
- *    Untappd
  */
 
 angular.module("ngCordovaOauth", [

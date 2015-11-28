@@ -27,5 +27,14 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "_release": "0.1.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.4",
+    "commit": "8cf594947cd8aa52ae64be2ff9f234b85f127293"
+  },
+  "_source": "git://github.com/nraboy/ng-cordova-oauth.git",
+  "_target": "~0.1.4",
+  "_originalSource": "ng-cordova-oauth"
 }
