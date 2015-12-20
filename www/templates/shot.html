@@ -1,8 +1,8 @@
 <ion-view title="shot">
     <ion-header-bar align-title="center" >
-        <a class="button button-icon ion-arrow-left-c" nav-direction="back" ng-click="goBack()"></a>
+        <a class="button button-icon ion-arrow-left-c" nav-direction="back"  ng-href="#/shots"></a>
         <h1 class="title">Shot</h1>
-        <a class="button button-icon lnr lnr-heart"  nav-direction="back" ng-click="like()"></a>
+        <!-- <a class="button button-icon lnr lnr-heart"  nav-direction="back" ng-click="like()"></a> -->
     </ion-header-bar>            
     <ion-content class="content_center">
         <div id="shot" ng-if="loaded == true">
@@ -16,7 +16,9 @@
             </div>
             <img ng-src="{{ shotImages }}" alt="{{ title }}">
             <ion-scroll direction="x" ng-if="shot.attachments_count > 0" id="shot_attachments"> 
-                <img ng-repeat="attachment in attachments track by $index" src="{{ attachment.thumbnail_url }}" class="thumb" ng-click="showImages($index)">
+                <a ng-repeat="attachment in attachments track by $index" ng-href="#/shots/{{ shot.id }}/attachment/{{ attachment.id }}">
+                    <img  src="{{ attachment.thumbnail_url }}" class="thumb">
+                </a>
             </ion-scroll>
             <div id="shot_counts">
                 <div class="count">

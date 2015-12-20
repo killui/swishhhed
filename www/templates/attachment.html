@@ -1,12 +1,14 @@
-<div class="modal image-modal transparent" >
-	<a class="close_modal" ng-click="closeModal()"><i class="ion-close-round"></i></a>
-  <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="activeSlide" show-pager="false">
-    <ion-slide ng-repeat="image in allattachment">
-	    	<span id="center">
-	    		<span id="wrap">
-	      		<img src="{{ image }}">
-	      	</span>
-	      </span>
-	  </ion-slide>
-	</ion-slide-box>
-</div>
+<ion-view title="attachment">
+    <ion-header-bar align-title="center" >
+        <a class="button button-icon ion-arrow-left-c" nav-direction="back"  ng-href="#/shots/{{ shot }}"></a>
+        <h1 class="title">Attachment</h1>
+        <!-- <a class="button button-icon lnr lnr-heart"  nav-direction="back" ng-click="like()"></a> -->
+    </ion-header-bar>            
+    <ion-content>
+        
+      		<img src="{{ attachment.url }}" 
+      		style="top: 50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);position:absolute!important;margin:0 auto;width:100%;">
+            
+    </ion-content>
+</ion-view> 
+    

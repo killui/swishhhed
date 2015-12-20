@@ -70,141 +70,147 @@ angular.module('Swishhhed',
     controller: 'loginController'
   })
   //oauth-callback
-  .state('oauth-callback', {
-    url: '/callback',
-    templateUrl: 'templates/oauth-callback.html',
-    controller: 'oauthController'
-  })
-  .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabbar.html"
-  })
+  // .state('tab', {
+  //   url: "/tab",
+  //   abstract: true,
+  //   templateUrl: "templates/tabbar.html"
+  // })
   // HOME
-  .state('tab.home', {
+  .state('home', {
     url: '/home',
     cache: true,
-    views: {
-      "home" : {
+    // views: {
+    //   "home" : {
         templateUrl: 'templates/home.html',
         controller: 'homeController'
-      }
-    }
+    //   }
+    // }
   })
-  // SHOTS
-  .state('tab.shots', {
+  //SHOTS
+  .state('shots', {
     url: '/shots',
     cache: true,
-    views: {
-      "shots" : {
+    //views: {
+      //"shots" : {
         templateUrl: 'templates/shots.html',
         controller: 'shotsController'
-      }
-    }
+      //}
+    //}
   })
   // SHOT
-  .state('tab.shot', {
+  .state('shot', {
     url: '/shots/:shotId',
     cache: true,
-    views: {
-      "shots" : {
+    // views: {
+    //   "shots" : {
         templateUrl: 'templates/shot.html',
         controller: 'shotController'  
-      }
-    }
+    //   }
+    // }
+  })
+  .state('attachment', {
+    url: '/shots/:shotId/attachment/:attachmentId',
+    cache: true,
+    // views: {
+    //   "shots" : {
+        templateUrl: 'templates/attachment.html',
+        controller: 'attachmentsController'  
+    //   }
+    // }
   })
   // UPLOAD
-  .state('tab.upload', {
-    url: '/upload',
-    views: {
-      "upload" : {
-        templateUrl: 'templates/upload.html',
-        controller: 'uploadController'
-      }
-    }
-  })
+  // .state('tab.upload', {
+  //   url: '/upload',
+  //   views: {
+  //     "upload" : {
+  //       templateUrl: 'templates/upload.html',
+  //       controller: 'uploadController'
+  //     }
+  //   }
+  // })
   // PROFIL
-  .state('tab.profil', {
-    url: '/profil',
-    cache: true,
-    views: {
-      "profil" : {
-        templateUrl: 'templates/profil.html',
-        controller: 'profilController'
-      }
-    }
-  })
-  .state('tab.user-shots', {
-    url: '/profil/shots',
-    cache: true,
-    views: {
-      "profil" : {
-        templateUrl: 'templates/profil/shots.html',
-        controller: 'profilShotsController'
-      }
-    }
-  })
-  .state('tab.user-followers', {
-    url: '/profil/followers',
-    cache: true,
-    views: {
-      "profil" : {
-        templateUrl: 'templates/profil/followers.html',
-        controller: 'profilFollowersController'
-      }
-    }
-  })
-  .state('tab.user-followings', {
-    url: '/profil/followings',
-    cache: true,
-    views: {
-      "profil" : {
-        templateUrl: 'templates/profil/followings.html',
-        controller: 'profilFollowingsController'
-      }
-    }
-  })
-  .state('tab.user-buckets', {
-    url: '/profil/buckets',
-    cache: true,
-    views: {
-      "profil" : {
-        templateUrl: 'templates/profil/buckets.html',
-        controller: 'profilBucketsController'
-      }
-    }
-  })
-  .state('tab.user-likes', {
-    url: '/profil/likes',
-    cache: true,
-    views: {
-      "profil" : {
-        templateUrl: 'templates/profil/likes.html',
-        controller: 'profilLikesController'
-      }
-    }
-  })
-  .state('tab.user-projects', {
-    url: '/profil/projects',
-    cache: true,
-    views: {
-      "profil" : {
-        templateUrl: 'templates/profil/projects.html',
-        controller: 'profilProjectsController'
-      }
-    }
-  })
-  .state('tab.user-teams', {
-    url: '/profil/teams',
-    cache: true,
-    views: {
-      "profil" : {
-        templateUrl: 'templates/profil/teams.html',
-        controller: 'profilTeamsController'
-      }
-    }
-  });
-  $urlRouterProvider.otherwise('/tab/shots');
+  // .state('tab.profil', {
+  //   url: '/profil',
+  //   cache: true,
+  //   views: {
+  //     "profil" : {
+  //       templateUrl: 'templates/profil.html',
+  //       controller: 'profilController'
+  //     }
+  //   }
+  // })
+  // .state('tab.user-shots', {
+  //   url: '/profil/shots',
+  //   cache: true,
+  //   views: {
+  //     "profil" : {
+  //       templateUrl: 'templates/profil/shots.html',
+  //       controller: 'profilShotsController'
+  //     }
+  //   }
+  // })
+  // .state('tab.user-followers', {
+  //   url: '/profil/followers',
+  //   cache: true,
+  //   views: {
+  //     "profil" : {
+  //       templateUrl: 'templates/profil/followers.html',
+  //       controller: 'profilFollowersController'
+  //     }
+  //   }
+  // })
+  // .state('tab.user-followings', {
+  //   url: '/profil/followings',
+  //   cache: true,
+  //   views: {
+  //     "profil" : {
+  //       templateUrl: 'templates/profil/followings.html',
+  //       controller: 'profilFollowingsController'
+  //     }
+  //   }
+  // })
+  // .state('tab.user-buckets', {
+  //   url: '/profil/buckets',
+  //   cache: true,
+  //   views: {
+  //     "profil" : {
+  //       templateUrl: 'templates/profil/buckets.html',
+  //       controller: 'profilBucketsController'
+  //     }
+  //   }
+  // })
+  // .state('tab.user-likes', {
+  //   url: '/profil/likes',
+  //   cache: true,
+  //   views: {
+  //     "profil" : {
+  //       templateUrl: 'templates/profil/likes.html',
+  //       controller: 'profilLikesController'
+  //     }
+  //   }
+  // })
+  // .state('tab.user-projects', {
+  //   url: '/profil/projects',
+  //   cache: true,
+  //   views: {
+  //     "profil" : {
+  //       templateUrl: 'templates/profil/projects.html',
+  //       controller: 'profilProjectsController'
+  //     }
+  //   }
+  // })
+  // .state('tab.user-teams', {
+  //   url: '/profil/teams',
+  //   cache: true,
+  //   views: {
+  //     "profil" : {
+  //       templateUrl: 'templates/profil/teams.html',
+  //       controller: 'profilTeamsController'
+  //     }
+  //   }
+  // })
+  ;
+  $urlRouterProvider.otherwise('/shots');
 })
 .config(['$compileProvider',function( $compileProvider ){ 
   var oldWhiteList = $compileProvider.imgSrcSanitizationWhitelist();

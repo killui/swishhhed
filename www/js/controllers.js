@@ -273,6 +273,7 @@ angular.module('starter.controllers', [])
         $ionicLoading.show({ templateUrl:'templates/loader.html' });
         angular.element(document.querySelector('#'+string)).addClass('selected');
         SORT = string;
+        $ionicScrollDelegate.scrollTop(true);
         var url = DribbbleApiUrl+"/v1/shots?page="+PAGE+"&sort="+SORT+"&timeframe="+TIMEFRAME+"&list="+LIST;
         var config = {
             headers: {
@@ -346,6 +347,32 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
             $scope.$broadcast('scroll.refreshComplete');
             $scope.$broadcast('scroll.infiniteScrollComplete');
+
+            $scope.loadMore = function() {
+                //SHOTS = SHOTS + 24;
+                PAGE = PAGE + 1;
+                getShots();
+            }
+            $scope.doReset = function() {
+                PAGE = 1;
+                SHOTS = 24;
+                SORT = 'popular';
+                TIMEFRAME = 'now';
+                LIST = '';
+                getShots();
+            }
+            $scope.updateSort = function() {
+                SORT = this.sort.value;
+                filterShots();
+            } 
+            $scope.updateTime = function() {
+                TIMEFRAME = this.time.value;
+                filterShots();
+            } 
+            $scope.updateList = function() {
+                LIST = this.list.value;
+                filterShots();
+            } 
         });
     }
     getShots();
@@ -439,12 +466,10 @@ angular.module('starter.controllers', [])
     function getShotAttachments(urlAttachments, config) {
         $http.get(urlAttachments,config)
         .success(function(attachments) {
-            console.log(attachments);
             attachments.forEach(function(i) {
                 $scope.attachments.push(i);
                 $scope.allattachment.push(i.url);
             });
-            console.log($scope.allattachment);
         })
         .error(function(err) {
             console.log(err);
@@ -471,34 +496,68 @@ angular.module('starter.controllers', [])
             console.log(err);
         });
     }
-    $scope.showImages = function(index) {
-        $scope.activeSlide = index;
-        $scope.showModal('templates/attachment.html');
-    }
-    $scope.showModal = function(templateUrl) {
-        StatusBar.hide();
-        $ionicModal.fromTemplateUrl(templateUrl, {
-            scope: $scope,
-            animation: 'fade'
-        }).then(function(modal) {
-            $scope.modal = modal;
-            $scope.modal.show();
+  
+    getInfoShot();
+})
+.controller(
+    'attachmentsController', 
+    function(
+        DribbbleApiUrl, 
+        $scope, 
+        $http, 
+        $stateParams, 
+        $sce, 
+        $location,
+        $localstorage,
+        $cordovaInAppBrowser,
+        $cordovaProgress,
+        $ionicNavBarDelegate,  
+        $ionicHistory, 
+        $ionicBackdrop, 
+        $ionicModal, 
+        $ionicSlideBoxDelegate, 
+        $ionicScrollDelegate, 
+        $ionicLoading,
+        $ionicPopover, 
+        $rootScope, 
+        $ionicUser, 
+        $ionicPush
+    ) {
+    var OAUTH_TOKEN = "f59e506fd880352413323c6b53cb72c91e2b2ec2c6fa7da64a5250e2484c891c";
+    var shotId = $stateParams.shotId;
+    var attachmentId = $stateParams.attachmentId;
+    var url = DribbbleApiUrl+"/v1/shots/"+shotId+"/attachments/"+attachmentId;
+    var config = {
+        headers: {
+            'Content-Type': 'application/json, text/html, application/javascript',
+            'Authorization': 'Bearer '+OAUTH_TOKEN,
+            'Origin': '*'
+        },
+        withCredentials: true
+    };
+    $scope.attachments = [];
+    $scope.allattachment = [];
+
+    $scope.shot = shotId;
+    
+    function getAttachment() {
+        $ionicLoading.show({
+            templateUrl:'templates/loader.html'
+        });
+        $http.get(url,config)
+        .success(function(data) {
+            $scope.attachment = data;
+        })
+        .error(function(err) {
+            console.log(err);
+        })
+        .finally(function() {
+            $scope.$broadcast('scroll.refreshComplete')
+            $ionicLoading.hide();
         });
     }
-    $scope.closeModal = function() {
-        StatusBar.show();
-        $scope.modal.hide();
-        $scope.modal.remove()
-    }
-    $scope.updateSlideStatus = function(slide) {
-        var zoomFactor = $ionicScrollDelegate.$getByHandle('scrollHandle' + slide).getScrollPosition().zoom;
-        if (zoomFactor == $scope.zoomMin) {
-            $ionicSlideBoxDelegate.enableSlide(true);
-        } else {
-            $ionicSlideBoxDelegate.enableSlide(false);
-        }
-    }
-    getInfoShot();
+
+    getAttachment();
 })
 // LOGIN
 .controller(
